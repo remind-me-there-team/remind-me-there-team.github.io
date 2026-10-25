@@ -1,0 +1,15 @@
+/* Общий стиль статических страниц сайта (политика, поддержка) — в цветах приложения. */
+:root { --bg: #000; --card: #1c1c1e; --text: #fff; --muted: rgba(235,235,245,.6); --accent: #ff9f0a; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font-size: 30px; margin: 0 0 4px; }
+h1 b { color: var(--accent); }
+h2 { font-size: 20px; margin: 32px 0 8px; }
+h3 { font-size: 16px; margin: 20px 0 4px; }
+p, li { color: var(--text); }
+.muted { color: var(--muted); font-size: 14px; }
+a { color: var(--accent); }
+section.card { background: var(--card); border-radius: 14px; padding: 4px 20px 16px; margin: 20px 0; }
+nav { display: flex; gap: 16px; margin: 12px 0 0; font-size: 15px; }
+ul { padding-left: 20px; }
