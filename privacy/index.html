@@ -9,77 +9,109 @@
 <body>
 <main>
 <h1><b>R</b>emind <b>M</b>e <b>W</b>hen</h1>
-<p class="muted">Privacy Policy · Политика конфиденциальности · Last updated / обновлено: 25 October 2026</p>
-<nav><a href="#en">English</a><a href="#ru">Русский</a><a href="../support/">Support</a></nav>
+<p class="muted">Privacy Policy · Политика конфиденциальности · Privatumo politika · Last updated: 12 November 2026</p>
+<nav><a href="#en">English</a><a href="#ru">Русский</a><a href="#lt">Lietuvių</a><a href="../support/">Support</a></nav>
 
 <section class="card" id="en">
 <h2>Privacy Policy</h2>
-<p>RMW (“Remind Me When”, “we”) is a reminder app: reminders that fire at a place or time, friends, shared lists.
-This policy explains what data we process and why. We do not sell data, show ads or use third-party analytics or tracking.</p>
+<p>RMW (“Remind Me When”, “we”) is an iPhone app for reminders that fire at a place or a time, with friends, chat, calls and shared lists.
+This policy explains what data we process and why. We do not sell data, show ads, track you across other apps or websites, or use third-party analytics or advertising SDKs.</p>
 
-<h3>What we store</h3>
-<ul>
-<li><b>Account:</b> your email address (if you sign in by email) or your Telegram user ID (if you use RMW inside Telegram); the name, @nickname, profile photo and “about me” text you enter.</li>
-<li><b>Your content:</b> places, reminders, dates, checklists, shared lists and their items.</li>
-<li><b>Friends:</b> who you are friends with, friend requests, reminders you send to or receive from friends.</li>
-<li><b>Location:</b> only your <b>last known position</b> (one point, overwritten each time), and only while you share it — when the app is open or you share live location with our Telegram bot. We do <b>not</b> keep a location history. It is used to trigger your place reminders, “I’m home” messages you turned on, and “near a friend” notifications.</li>
-<li>On your device the app also keeps a local copy of your data for offline use.</li>
-</ul>
+<h3>End-to-end encryption</h3>
+<p>Your places, reminders, dates, chats and shared lists are encrypted on your iPhone before they are sent to our server.
+The keys stay on your devices (and with the friends you share with), so we store this content only in encrypted form and cannot read it.
+If you lose all your devices and your recovery code, we cannot restore it.</p>
 
-<h3>Who sees what</h3>
+<h3>What our server can see</h3>
 <ul>
-<li>Friends you accepted see your name, @nickname, photo and “about me”, and receive the messages you chose to send them (offers, “I’m home”, “we are near each other”). They never see your coordinates.</li>
-<li>Anyone who knows your exact @nickname can see your name and photo to send you a friend request.</li>
+<li><b>Account:</b> your email address (used to sign in with a one-time code).</li>
+<li><b>Profile:</b> the name, @nickname, profile photo and “about me” text you enter. Friends and people who know your exact @nickname can see them.</li>
+<li><b>Friends:</b> who you are friends with and friend requests.</li>
+<li><b>Service data:</b> technical details needed to sync and deliver things — record IDs, timestamps, which friend a message or shared list belongs to, and your push-notification token.</li>
+<li><b>Location (only if you turn it on):</b> if you enable “Share my location” in Profile → Privacy, the app sends your <b>last known position</b> (one point, overwritten each time) so that friends can be told when you are near each other. We do not keep a location history. Place reminders themselves are checked on your iPhone and do not need this.</li>
+<li><b>Usage events:</b> a few anonymous-content events linked to your account (for example “app opened”, “reminder created”, “reminder fired”) to understand which features work. They never contain the text of your reminders, places or messages.</li>
+<li><b>Calls:</b> to connect a call the server exchanges technical connection data between you and your friend. Audio and video are encrypted between the devices; if a direct connection is not possible, the encrypted stream passes through a relay server that cannot decrypt it.</li>
 </ul>
 
 <h3>Service providers</h3>
 <ul>
-<li><b>Supabase</b> — database, sign-in and file storage, hosted in the EU (Ireland).</li>
-<li><b>Telegram</b> — only if you use RMW as a Telegram Mini App or our bot: messages are delivered through Telegram.</li>
-<li><b>Apple</b> — App Store and notifications on iPhone.</li>
-<li><b>Map tiles</b> (OpenFreeMap, Esri, OpenStreetMap Nominatim for address search) receive the map area you view, not your account.</li>
+<li><b>Supabase</b> — database, sign-in, file storage and server functions, hosted in the EU.</li>
+<li><b>Brevo</b> — sends the sign-in code to your email.</li>
+<li><b>Apple</b> and <b>Expo</b> — deliver push notifications. Apple also provides the App Store, maps and on-device speech recognition.</li>
+<li><b>Address search:</b> when you search for a place, the search text and your approximate position are sent to OpenStreetMap-based search (Photon, Nominatim) or Apple’s search. The text of your reminder is not sent.</li>
 </ul>
 
 <h3>Legal basis, retention, your rights</h3>
-<p>We process data to provide the service you asked for (GDPR Art. 6(1)(b)) and, for location, with your consent, which you can withdraw at any time in iPhone Settings or by stopping location sharing.
-Data is kept until you delete it or your account. You can <b>delete your account and all data</b> in the app: Profile → Delete account.
+<p>We process data to provide the service you asked for (GDPR Art. 6(1)(b)); location sharing is based on your consent, which you can withdraw at any time in the app or in iPhone Settings.
+Data is kept until you delete it or your account. You can <b>delete your account and all data</b> in the app: Profile → Delete account. Deletion is immediate and cannot be undone.
 You have the right to access, correct, export and delete your data and to complain to a supervisory authority (in Lithuania — the State Data Protection Inspectorate, vdai.lrv.lt). Contact us via the <a href="../support/">Support</a> page.</p>
 <p>RMW is not intended for children under 14.</p>
 </section>
 
 <section class="card" id="ru">
 <h2>Политика конфиденциальности</h2>
-<p>RMW («Remind Me When», «мы») — приложение напоминаний: по месту и времени, с друзьями и общими списками.
-Здесь — какие данные мы обрабатываем и зачем. Мы не продаём данные, не показываем рекламу и не используем сторонние аналитику и трекинг.</p>
+<p>RMW («Remind Me When», «мы») — приложение для iPhone: напоминания по месту и времени, друзья, чат, звонки и общие списки.
+Здесь — какие данные мы обрабатываем и зачем. Мы не продаём данные, не показываем рекламу, не отслеживаем вас в других приложениях и на сайтах и не используем сторонние SDK аналитики и рекламы.</p>
 
-<h3>Что мы храним</h3>
-<ul>
-<li><b>Аккаунт:</b> почта (если вы входите по почте) или Telegram ID (если пользуетесь RMW в Telegram); имя, @ник, фото и «о себе», которые вы указали.</li>
-<li><b>Ваши данные:</b> места, напоминания, даты, чек-листы, общие списки и их пункты.</li>
-<li><b>Друзья:</b> с кем вы дружите, заявки, напоминания, которые вы отправили друзьям или получили от них.</li>
-<li><b>Геопозиция:</b> только <b>последняя точка</b> (одна, каждый раз перезаписывается) и только пока вы ею делитесь — когда приложение открыто или вы транслируете геопозицию нашему боту в Telegram. <b>Историю перемещений мы не храним.</b> Точка нужна, чтобы сработали ваши напоминания по месту, включённые вами «Я дома» и «рядом с другом».</li>
-<li>На устройстве приложение хранит копию ваших данных для работы без сети.</li>
-</ul>
+<h3>Сквозное шифрование</h3>
+<p>Места, напоминания, даты, чаты и общие списки шифруются на iPhone до отправки на сервер.
+Ключи остаются на ваших устройствах (и у друзей, с которыми вы делитесь), поэтому мы храним эти данные только в зашифрованном виде и прочитать их не можем.
+Если вы потеряете все устройства и код восстановления, восстановить их мы не сможем.</p>
 
-<h3>Кто что видит</h3>
+<h3>Что видит наш сервер</h3>
 <ul>
-<li>Друзья, которых вы приняли, видят имя, @ник, фото и «о себе» и получают то, что вы решили им отправить (предложения, «Я дома», «вы рядом»). Ваши координаты они не видят никогда.</li>
-<li>Тот, кто знает ваш точный @ник, видит имя и фото — чтобы отправить заявку в друзья.</li>
+<li><b>Аккаунт:</b> почта (для входа по одноразовому коду).</li>
+<li><b>Профиль:</b> имя, @ник, фото и «о себе», которые вы указали. Их видят друзья и те, кто знает ваш точный @ник.</li>
+<li><b>Друзья:</b> с кем вы дружите, заявки в друзья.</li>
+<li><b>Служебные данные:</b> то, что нужно для синхронизации и доставки: идентификаторы записей, время, к какому другу относится сообщение или общий список, токен push-уведомлений.</li>
+<li><b>Геопозиция (только если включите):</b> если в «Профиль → Приватность» включено «Делиться местоположением», приложение отправляет <b>последнюю точку</b> (одну, каждый раз перезаписывается), чтобы друзья узнали, что вы рядом. Историю перемещений мы не храним. Напоминания по месту проверяются на самом iPhone, для них это не нужно.</li>
+<li><b>События использования:</b> несколько событий без содержимого, привязанных к аккаунту (например «открыл приложение», «создал напоминание», «напоминание сработало»), чтобы понимать, какие функции работают. Текста напоминаний, мест и сообщений в них нет.</li>
+<li><b>Звонки:</b> чтобы соединить звонок, сервер передаёт служебные данные соединения между вами и другом. Звук и видео шифруются между устройствами; если прямое соединение невозможно, зашифрованный поток идёт через сервер-ретранслятор, который не может его расшифровать.</li>
 </ul>
 
 <h3>Кому мы доверяем обработку</h3>
 <ul>
-<li><b>Supabase</b> — база данных, вход и хранение файлов, серверы в ЕС (Ирландия).</li>
-<li><b>Telegram</b> — только если вы пользуетесь RMW как Mini App или ботом: сообщения доставляются через Telegram.</li>
-<li><b>Apple</b> — App Store и уведомления на iPhone.</li>
-<li><b>Карты</b> (OpenFreeMap, Esri, поиск адресов OpenStreetMap Nominatim) получают только видимую область карты, не ваш аккаунт.</li>
+<li><b>Supabase</b> — база данных, вход, хранение файлов и серверные функции, серверы в ЕС.</li>
+<li><b>Brevo</b> — отправляет код для входа на почту.</li>
+<li><b>Apple</b> и <b>Expo</b> — доставляют push-уведомления. Apple также — App Store, карты и распознавание речи на устройстве.</li>
+<li><b>Поиск адресов:</b> когда вы ищете место, текст запроса и примерная позиция уходят в поиск на основе OpenStreetMap (Photon, Nominatim) или в поиск Apple. Текст напоминания туда не уходит.</li>
 </ul>
 
 <h3>Основания, сроки, ваши права</h3>
-<p>Мы обрабатываем данные, чтобы оказывать сервис, о котором вы просите (ст. 6(1)(b) GDPR), а геопозицию — с вашего согласия; отозвать его можно в любой момент в настройках iPhone или перестав делиться геопозицией.
-Данные хранятся, пока вы их не удалите или не удалите аккаунт. <b>Удалить аккаунт и все данные</b> можно в приложении: Профиль → Удалить аккаунт.
+<p>Мы обрабатываем данные, чтобы оказывать сервис, о котором вы просите (ст. 6(1)(b) GDPR); геопозицией делимся с вашего согласия, отозвать его можно в любой момент в приложении или в настройках iPhone.
+Данные хранятся, пока вы их не удалите или не удалите аккаунт. <b>Удалить аккаунт и все данные</b> можно в приложении: Профиль → Удалить аккаунт. Удаление сразу и без возможности восстановления.
 Вы вправе получить, исправить, выгрузить и удалить свои данные и пожаловаться в надзорный орган (в Литве — Государственная инспекция по защите данных, vdai.lrv.lt). Связаться с нами — на странице <a href="../support/">Поддержка</a>.</p>
 <p>RMW не предназначено для детей младше 14 лет.</p>
+</section>
+
+<section class="card" id="lt">
+<h2>Privatumo politika</h2>
+<p>RMW („Remind Me When“, „mes“) – „iPhone“ programėlė priminimams pagal vietą ir laiką, su draugais, pokalbiais, skambučiais ir bendrais sąrašais.
+Mes neparduodame duomenų, nerodome reklamos, nesekame jūsų kitose programėlėse ar svetainėse ir nenaudojame trečiųjų šalių analitikos ar reklamos SDK.</p>
+
+<h3>Ištisinis šifravimas</h3>
+<p>Vietos, priminimai, datos, pokalbiai ir bendri sąrašai užšifruojami jūsų „iPhone“ prieš siunčiant į serverį. Raktai lieka jūsų įrenginiuose (ir pas draugus, su kuriais dalijatės), todėl šių duomenų perskaityti negalime.
+Praradę visus įrenginius ir atkūrimo kodą, jų atkurti negalėsime.</p>
+
+<h3>Ką mato mūsų serveris</h3>
+<ul>
+<li><b>Paskyra:</b> el. paštas (prisijungimui vienkartiniu kodu).</li>
+<li><b>Profilis:</b> vardas, @slapyvardis, nuotrauka ir „apie mane“. Juos mato draugai ir tie, kas žino tikslų jūsų @slapyvardį.</li>
+<li><b>Draugai:</b> su kuo draugaujate, kvietimai.</li>
+<li><b>Tarnybiniai duomenys:</b> įrašų ID, laikas, kuriam draugui priklauso žinutė ar sąrašas, pranešimų žetonas.</li>
+<li><b>Vieta (tik įjungus):</b> įjungus „Dalytis vieta“, siunčiama <b>paskutinė vieta</b> (vienas taškas, kaskart perrašomas), kad draugai sužinotų, kai esate šalia. Judėjimo istorijos nesaugome.</li>
+<li><b>Naudojimo įvykiai:</b> keli įvykiai be turinio (pvz., „atidarė programėlę“, „sukūrė priminimą“), susieti su paskyra.</li>
+<li><b>Skambučiai:</b> garsas ir vaizdas šifruojami tarp įrenginių; jei reikia, užšifruotas srautas eina per retransliavimo serverį, kuris jo iššifruoti negali.</li>
+</ul>
+
+<h3>Paslaugų teikėjai</h3>
+<p>Supabase (duomenų bazė ir serveris ES), Brevo (prisijungimo kodas el. paštu), Apple ir Expo (pranešimai), OpenStreetMap paieška (Photon, Nominatim) ir Apple paieška (adresų paieškai gauna užklausos tekstą ir apytikslę vietą).</p>
+
+<h3>Teisinis pagrindas ir jūsų teisės</h3>
+<p>Duomenis tvarkome paslaugai teikti (BDAR 6 str. 1 d. b p.); vietos dalijimasis – jūsų sutikimu, kurį galite bet kada atšaukti.
+<b>Ištrinti paskyrą ir visus duomenis</b> galite programėlėje: Profilis → Ištrinti paskyrą.
+Turite teisę susipažinti su duomenimis, juos ištaisyti, perkelti, ištrinti ir pateikti skundą Valstybinei duomenų apsaugos inspekcijai (vdai.lrv.lt). Susisiekite per <a href="../support/">pagalbos</a> puslapį.</p>
+<p>RMW neskirta jaunesniems nei 14 metų vaikams.</p>
 </section>
 </main>
 </body>
