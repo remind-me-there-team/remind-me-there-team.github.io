@@ -1,3 +1,5 @@
-# remind-me-there-team.github.io
+# Старый адрес RMW
 
-Старый адрес сайта RMW. Здесь лежит та же копия сайта, что и на основном адресе https://remind-me-when.github.io (исходник — репозиторий remind-me-when/remind-me-when.github.io). Меняете сайт — копируйте сюда тоже.
+Сайт переехал на https://remind-me-when.github.io (репозиторий remind-me-when/remind-me-when.github.io).
+Здесь только переадресация: каждая страница переносит на тот же путь нового адреса, сохраняя #язык.
+Не удалять: на этот адрес ведут ссылки в App Store 1.0 и в старых сборках.
