@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RMW — Remind Me When</title>
-<meta name="description" content="Напоминания для iPhone, которые срабатывают в нужном месте, в нужное время и когда друг рядом.">
+<meta name="description" content="Напоминания на все случаи для iPhone: по месту, по времени и когда друг рядом.">
 <meta name="theme-color" content="#ECEFF5" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
 <meta name="apple-itunes-app" content="app-id=6831954343">
 <link rel="canonical" href="https://remind-me-when.github.io/">
 <meta property="og:url" content="https://remind-me-when.github.io/">
 <meta property="og:title" content="RMW — Remind Me When">
-<meta property="og:description" content="Напомнит там, где это нужно: у магазина, дома, на работе — и когда друг рядом.">
+<meta property="og:description" content="Напоминания на все случаи: у магазина, дома, на работе — и когда друг рядом.">
 <meta property="og:image" content="https://remind-me-when.github.io/img/icon.png">
 <link rel="icon" href="favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -250,8 +250,8 @@ footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
   </svg>
   <div class="wrap">
     <div>
-      <h1 data-i="h1" data-split>Напомнит, когда вы&nbsp;там</h1>
-      <p class="lead" data-i="lead">Купить хлеб — у магазина. Выключить утюг — на выходе из дома. Отдать книгу — когда друг рядом. RMW срабатывает в нужном месте, а не в случайное время.</p>
+      <h1 data-i="h1" data-split>Напоминания на&nbsp;все случаи</h1>
+      <p class="lead" data-i="lead">Купить хлеб — у магазина. Выключить утюг — на выходе из дома. Отдать книгу — когда друг рядом. Позвонить маме — в 7 вечера.</p>
       <div class="cta">
         <a class="store big" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small data-i="dl">Загрузите в</small>App Store</span></a>
         <p class="note" data-i="note">Бесплатно, для iPhone</p>
@@ -422,8 +422,8 @@ footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
   // ---------- Тексты ----------
   var en = {
     get: 'Get', dl: 'Download on the', note: 'Free, for iPhone', now: 'now',
-    h1: 'Reminds you when you’re&nbsp;there',
-    lead: 'Buy bread at the store. Unplug the iron on your way out. Return a book when your friend is nearby. RMW goes off in the right place, not at a random time.',
+    h1: 'Reminders for every&nbsp;occasion',
+    lead: 'Buy bread at the store. Unplug the iron on your way out. Return a book when your friend is nearby. Call mom at 7 pm.',
     wheelAria: 'Day wheel from the app: spin it to see the plan for another day', hint: 'Spin the wheel',
     mapAria: 'Map: a person walks up to a store and a reminder appears on screen',
     pushT: 'You’re at the store', pushB: 'Buy bread and milk',
@@ -497,8 +497,8 @@ footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
     document.querySelectorAll('[data-i]').forEach(function (el) { if (d[el.dataset.i]) el.innerHTML = d[el.dataset.i]; });
     document.querySelectorAll('[data-i-aria]').forEach(function (el) { el.setAttribute('aria-label', d[el.dataset.iAria]); });
     document.querySelectorAll('[data-split]').forEach(split);
-    document.querySelector('meta[name="description"]').setAttribute('content', l === 'en' ? 'Reminders for iPhone that go off in the right place, at the right time, and when a friend is nearby.' : ruMeta);
-    document.querySelector('meta[property="og:description"]').setAttribute('content', l === 'en' ? 'Reminds you where it matters: at the store, at home, at work, and when a friend is nearby.' : ruOg);
+    document.querySelector('meta[name="description"]').setAttribute('content', l === 'en' ? 'Reminders for every occasion on iPhone: by place, by time, and when a friend is nearby.' : ruMeta);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', l === 'en' ? 'Reminders for every occasion: at the store, at home, at work, and when a friend is nearby.' : ruOg);
     document.querySelectorAll('[data-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === l ? 'true' : 'false'); });
     if (wheel) wheel.relang();
   }
