@@ -1,12 +1,3 @@
-# RMW — Remind Me When
+# remind-me-there-team.github.io
 
-Сайт приложения RMW для iPhone: https://remind-me-there-team.github.io
-
-- `index.html` — одностраничный сайт (русский и английский, светлая и тёмная тема), без сборки.
-- `support/` и `privacy/` — поддержка и политика конфиденциальности, на них ссылается App Store.
-- `style.css` — общий стиль этих двух страниц.
-
-Приложение: https://apps.apple.com/app/id6831954343
-
-Старая веб-версия (Telegram Mini App) отсюда убрана — проект Telegram заброшен.
-Свой домен: положить в корень файл `CNAME` с именем домена и настроить DNS по инструкции GitHub Pages.
+Старый адрес сайта RMW. Здесь лежит та же копия сайта, что и на основном адресе https://remind-me-when.github.io (исходник — репозиторий remind-me-when/remind-me-when.github.io). Меняете сайт — копируйте сюда тоже.

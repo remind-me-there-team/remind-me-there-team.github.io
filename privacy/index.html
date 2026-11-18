@@ -2,119 +2,310 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RMW — Privacy Policy</title>
+<meta name="description" content="RMW privacy policy: places, reminders, chats and lists are end-to-end encrypted on your iPhone.">
+<meta name="theme-color" content="#ECEFF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="../favicon.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css">
+<script>document.documentElement.className = 'js';</script>
+<style>
+:root {
+  --mist: #ECEFF5; --card: #FBFCFE; --cobalt: #2D47C7; --band: #2D47C7;
+  --ink: #111A2E; --ink-2: rgba(17,26,46,.68); --ink-3: rgba(17,26,46,.52);
+  --line: rgba(17,26,46,.1); --signal: #FF6A2B; --tint: rgba(45,71,199,.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mist: #0F1115; --card: #191C22; --cobalt: #8A9DF5; --band: #2F44A8;
+    --ink: #EDEFF3; --ink-2: rgba(237,239,243,.72); --ink-3: rgba(237,239,243,.52);
+    --line: rgba(237,239,243,.09); --signal: #FF7A3D; --tint: rgba(138,157,245,.1);
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 17px/1.6 Onest, -apple-system, system-ui, sans-serif; overflow-x: hidden; }
+a { color: var(--cobalt); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 700px) { .wrap { padding: 0 32px; } }
+h1, h2 { font-family: Unbounded, Onest, sans-serif; font-weight: 600; letter-spacing: -.02em; margin: 0; }
+
+header { padding: 20px 0; }
+header .wrap { display: flex; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 18px; }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.spacer { flex: 1; }
+.langs { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.langs button { font: 500 14px Onest, sans-serif; color: var(--ink-2); background: none; border: 0; border-radius: 999px; padding: 6px 12px; min-height: 34px; min-width: 42px; cursor: pointer; }
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--mist); }
+.store { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--mist); text-decoration: none; border-radius: 999px; padding: 8px 16px 8px 13px; font-weight: 600; font-size: 15px; min-height: 40px; }
+.store svg { width: 17px; height: 17px; fill: currentColor; }
+
+.doc { max-width: 820px; padding-top: 40px; padding-bottom: 96px; }
+.doc h1 { font-size: clamp(30px, 6vw, 60px); line-height: 1.06; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
+@media (max-width: 480px) { .doc h1 { font-size: 28px; } }
+.lead { font-size: clamp(18px, 2vw, 21px); color: var(--ink-2); margin: 20px 0 0; max-width: 40ch; }
+.date { color: var(--ink-3); font-size: 14px; margin: 14px 0 0; }
+
+.band { position: relative; overflow: hidden; background: var(--band); color: #fff; border-radius: 32px; padding: 44px clamp(24px, 5vw, 56px); margin: 48px 0 0; }
+.band h2 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; max-width: 18ch; position: relative; }
+.band p { color: rgba(255,255,255,.88); margin: 16px 0 0; max-width: 48ch; position: relative; }
+.band svg.rings { position: absolute; right: -150px; top: -110px; width: 420px; height: 420px; opacity: .3; }
+.band svg.rings circle { fill: none; stroke: #fff; }
+.band svg.rings .dot { fill: var(--signal); stroke: none; }
+
+.facts { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.facts li { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px 18px 20px; font-size: 15px; line-height: 1.4; color: var(--ink-2); }
+.facts b { display: block; color: var(--ink); font-size: 16px; margin: 12px 0 4px; }
+.ico { width: 26px; height: 26px; stroke: var(--cobalt); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; }
+
+.doc h2.sec { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; margin: 72px 0 8px; }
+.doc p { margin: 14px 0 0; }
+.rows { margin: 20px 0 0; border-top: 1px solid var(--line); }
+.rows > div { display: grid; grid-template-columns: 200px 1fr; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.rows dt { font-weight: 600; }
+.rows dd { margin: 0; color: var(--ink-2); }
+.rows .opt { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 500; color: var(--cobalt); background: var(--tint); border-radius: 999px; padding: 2px 10px; }
+
+.callout { display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--signal); border-radius: 18px; padding: 20px 22px; margin: 28px 0 0; }
+.callout .ico { stroke: var(--signal); flex: none; margin-top: 2px; }
+.callout p { margin: 0; }
+.muted { color: var(--ink-3); font-size: 15px; }
+
+details { border-bottom: 1px solid var(--line); }
+.faq { margin: 24px 0 0; border-top: 1px solid var(--line); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 18px; min-height: 44px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 2px solid var(--cobalt); border-bottom: 2px solid var(--cobalt); transform: rotate(45deg) translate(-3px, -3px); transition: transform .2s ease; }
+details[open] summary::after { transform: rotate(225deg) translate(-3px, -3px); }
+details p { margin: 0 0 22px; color: var(--ink-2); max-width: 62ch; }
+
+.mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; background: #fff; color: #1F3496; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 22px; min-height: 48px; position: relative; word-break: break-all; }
+.mail .ico { stroke: #1F3496; width: 20px; height: 20px; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); color: var(--ink-3); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
+
+@media (max-width: 700px) {
+  .facts { grid-template-columns: 1fr; }
+  .facts li { display: grid; grid-template-columns: 26px 1fr; gap: 0 14px; }
+  .facts li .ico { grid-row: span 2; }
+  .facts b { margin: 0 0 2px; }
+  .rows > div { grid-template-columns: 1fr; }
+  .band { border-radius: 26px; padding: 36px 22px 40px; margin-top: 36px; }
+  .band svg.rings { width: 300px; height: 300px; right: -150px; top: -120px; }
+  .doc { padding-top: 20px; }
+  .doc h2.sec { margin-top: 56px; }
+}
+@media (max-width: 480px) { header .store { display: none; } footer .spacer { display: none; } }
+@media (prefers-reduced-motion: reduce) { summary::after { transition: none; } }
+.js [data-lang] { display: none; }
+.js [data-lang].on { display: block; }
+</style>
 </head>
 <body>
-<main>
-<h1><b>R</b>emind <b>M</b>e <b>W</b>hen</h1>
-<p class="muted">Privacy Policy · Политика конфиденциальности · Privatumo politika · Last updated: 12 November 2026</p>
-<nav><a href="../">RMW</a><a href="#en">English</a><a href="#ru">Русский</a><a href="#lt">Lietuvių</a><a href="../support/">Support</a></nav>
+<header>
+  <div class="wrap">
+    <a class="brand" href="../"><img src="../img/apple-touch-icon.png" alt="" width="36" height="36">RMW</a>
+    <span class="spacer"></span>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-set="en" lang="en">EN</button>
+      <button type="button" data-set="ru" lang="ru">RU</button>
+      <button type="button" data-set="lt" lang="lt">LT</button>
+    </div>
+    <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>App Store</a>
+  </div>
+</header>
 
-<section class="card" id="en">
-<h2>Privacy Policy</h2>
-<p>RMW (“Remind Me When”, “we”) is an iPhone app for reminders that fire at a place or a time, with friends, chat, calls and shared lists.
-This policy explains what data we process and why. We do not sell data, show ads, track you across other apps or websites, or use third-party analytics or advertising SDKs.</p>
+<main class="wrap doc">
 
-<h3>End-to-end encryption</h3>
-<p>Your places, reminders, dates, chats and shared lists are encrypted on your iPhone before they are sent to our server.
-The keys stay on your devices (and with the friends you share with), so we store this content only in encrypted form and cannot read it.
-If you lose all your devices and your recovery code, we cannot restore it.</p>
+<!-- ===================== English ===================== -->
+<article id="en" data-lang="en" lang="en">
+  <h1>Privacy Policy</h1>
+  <p class="lead">RMW (“Remind Me When”, “we”) is an iPhone app for reminders that fire at a place or a time, with friends, chat, calls and shared lists. This policy explains what data we process and why.</p>
+  <p class="date">Last updated: 12 November 2026</p>
 
-<h3>What our server can see</h3>
-<ul>
-<li><b>Account:</b> your email address (used to sign in with a one-time code).</li>
-<li><b>Profile:</b> the name, @nickname, profile photo and “about me” text you enter. Friends and people who know your exact @nickname can see them.</li>
-<li><b>Friends:</b> who you are friends with and friend requests.</li>
-<li><b>Service data:</b> technical details needed to sync and deliver things — record IDs, timestamps, which friend a message or shared list belongs to, and your push-notification token.</li>
-<li><b>Location (only if you turn it on):</b> if you enable “Share my location” in Profile → Privacy, the app sends your <b>last known position</b> (one point, overwritten each time) so that friends can be told when you are near each other. We do not keep a location history. Place reminders themselves are checked on your iPhone and do not need this.</li>
-<li><b>Usage events:</b> a few anonymous-content events linked to your account (for example “app opened”, “reminder created”, “reminder fired”) to understand which features work. They never contain the text of your reminders, places or messages.</li>
-<li><b>Calls:</b> to connect a call the server exchanges technical connection data between you and your friend. Audio and video are encrypted between the devices; if a direct connection is not possible, the encrypted stream passes through a relay server that cannot decrypt it.</li>
-</ul>
+  <div class="band">
+    <svg class="rings" viewBox="0 0 420 420" aria-hidden="true"><circle cx="210" cy="210" r="50" stroke-width="2"/><circle cx="210" cy="210" r="100" stroke-opacity=".7"/><circle cx="210" cy="210" r="150" stroke-opacity=".45"/><circle cx="210" cy="210" r="205" stroke-opacity=".25"/><circle class="dot" cx="210" cy="210" r="9"/></svg>
+    <h2>End-to-end encryption</h2>
+    <p>Your places, reminders, dates, chats and shared lists are encrypted on your iPhone before they are sent to our server. The keys stay on your devices (and with the friends you share with), so we store this content only in encrypted form and cannot read it. If you lose all your devices and your recovery code, we cannot restore it.</p>
+  </div>
 
-<h3>Service providers</h3>
-<ul>
-<li><b>Supabase</b> — database, sign-in, file storage and server functions, hosted in the EU.</li>
-<li><b>Brevo</b> — sends the sign-in code to your email.</li>
-<li><b>Apple</b> and <b>Expo</b> — deliver push notifications. Apple also provides the App Store, maps and on-device speech recognition.</li>
-<li><b>Address search:</b> when you search for a place, the search text and your approximate position are sent to OpenStreetMap-based search (Photon, Nominatim) or Apple’s search. The text of your reminder is not sent.</li>
-</ul>
+  <ul class="facts">
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><b>No ads, no selling</b>We do not sell data or show ads.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><path d="M4 20L20 4"/></svg><b>No tracking</b>We do not track you across other apps or websites, or use third-party analytics or advertising SDKs.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><b>Delete in the app</b>Profile → Delete account removes your account and all data immediately.</li>
+  </ul>
 
-<h3>Legal basis, retention, your rights</h3>
-<p>We process data to provide the service you asked for (GDPR Art. 6(1)(b)); location sharing is based on your consent, which you can withdraw at any time in the app or in iPhone Settings.
-Data is kept until you delete it or your account. You can <b>delete your account and all data</b> in the app: Profile → Delete account. Deletion is immediate and cannot be undone.
-You have the right to access, correct, export and delete your data and to complain to a supervisory authority (in Lithuania — the State Data Protection Inspectorate, vdai.lrv.lt). Contact us via the <a href="../support/">Support</a> page.</p>
-<p>RMW is not intended for children under 14.</p>
-</section>
+  <h2 class="sec">What our server can see</h2>
+  <dl class="rows">
+    <div><dt>Account</dt><dd>Your email address (used to sign in with a one-time code).</dd></div>
+    <div><dt>Profile</dt><dd>The name, @nickname, profile photo and “about me” text you enter. Friends and people who know your exact @nickname can see them.</dd></div>
+    <div><dt>Friends</dt><dd>Who you are friends with and friend requests.</dd></div>
+    <div><dt>Service data</dt><dd>Technical details needed to sync and deliver things: record IDs, timestamps, which friend a message or shared list belongs to, and your push-notification token.</dd></div>
+    <div><dt>Location</dt><dd>If you enable “Share my location” in Profile → Privacy, the app sends your <b>last known position</b> (one point, overwritten each time) so that friends can be told when you are near each other. We do not keep a location history. Place reminders themselves are checked on your iPhone and do not need this.<br><span class="opt">Only if you turn it on</span></dd></div>
+    <div><dt>Usage events</dt><dd>A few anonymous-content events linked to your account (for example “app opened”, “reminder created”, “reminder fired”) to understand which features work. They never contain the text of your reminders, places or messages.</dd></div>
+    <div><dt>Calls</dt><dd>To connect a call the server exchanges technical connection data between you and your friend. Audio and video are encrypted between the devices; if a direct connection is not possible, the encrypted stream passes through a relay server that cannot decrypt it.</dd></div>
+  </dl>
 
-<section class="card" id="ru">
-<h2>Политика конфиденциальности</h2>
-<p>RMW («Remind Me When», «мы») — приложение для iPhone: напоминания по месту и времени, друзья, чат, звонки и общие списки.
-Здесь — какие данные мы обрабатываем и зачем. Мы не продаём данные, не показываем рекламу, не отслеживаем вас в других приложениях и на сайтах и не используем сторонние SDK аналитики и рекламы.</p>
+  <h2 class="sec">Service providers</h2>
+  <dl class="rows">
+    <div><dt>Supabase</dt><dd>Database, sign-in, file storage and server functions, hosted in the EU.</dd></div>
+    <div><dt>Brevo</dt><dd>Sends the sign-in code to your email.</dd></div>
+    <div><dt>Apple and Expo</dt><dd>Deliver push notifications. Apple also provides the App Store, maps and on-device speech recognition.</dd></div>
+    <div><dt>Address search</dt><dd>When you search for a place, the search text and your approximate position are sent to OpenStreetMap-based search (Photon, Nominatim) or Apple’s search. The text of your reminder is not sent.</dd></div>
+  </dl>
 
-<h3>Сквозное шифрование</h3>
-<p>Места, напоминания, даты, чаты и общие списки шифруются на iPhone до отправки на сервер.
-Ключи остаются на ваших устройствах (и у друзей, с которыми вы делитесь), поэтому мы храним эти данные только в зашифрованном виде и прочитать их не можем.
-Если вы потеряете все устройства и код восстановления, восстановить их мы не сможем.</p>
+  <h2 class="sec">Legal basis, retention, your rights</h2>
+  <p>We process data to provide the service you asked for (GDPR Art. 6(1)(b)); location sharing is based on your consent, which you can withdraw at any time in the app or in iPhone Settings.</p>
+  <p>Data is kept until you delete it or your account.</p>
+  <div class="callout"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><p>You can <b>delete your account and all data</b> in the app: Profile → Delete account. Deletion is immediate and cannot be undone.</p></div>
+  <p>You have the right to access, correct, export and delete your data and to complain to a supervisory authority (in Lithuania — the State Data Protection Inspectorate, <a href="https://vdai.lrv.lt">vdai.lrv.lt</a>). Contact us via the <a href="../support/#en">Support</a> page.</p>
+  <p class="muted">RMW is not intended for children under 14.</p>
+</article>
 
-<h3>Что видит наш сервер</h3>
-<ul>
-<li><b>Аккаунт:</b> почта (для входа по одноразовому коду).</li>
-<li><b>Профиль:</b> имя, @ник, фото и «о себе», которые вы указали. Их видят друзья и те, кто знает ваш точный @ник.</li>
-<li><b>Друзья:</b> с кем вы дружите, заявки в друзья.</li>
-<li><b>Служебные данные:</b> то, что нужно для синхронизации и доставки: идентификаторы записей, время, к какому другу относится сообщение или общий список, токен push-уведомлений.</li>
-<li><b>Геопозиция (только если включите):</b> если в «Профиль → Приватность» включено «Делиться местоположением», приложение отправляет <b>последнюю точку</b> (одну, каждый раз перезаписывается), чтобы друзья узнали, что вы рядом. Историю перемещений мы не храним. Напоминания по месту проверяются на самом iPhone, для них это не нужно.</li>
-<li><b>События использования:</b> несколько событий без содержимого, привязанных к аккаунту (например «открыл приложение», «создал напоминание», «напоминание сработало»), чтобы понимать, какие функции работают. Текста напоминаний, мест и сообщений в них нет.</li>
-<li><b>Звонки:</b> чтобы соединить звонок, сервер передаёт служебные данные соединения между вами и другом. Звук и видео шифруются между устройствами; если прямое соединение невозможно, зашифрованный поток идёт через сервер-ретранслятор, который не может его расшифровать.</li>
-</ul>
+<!-- ===================== Русский ===================== -->
+<article id="ru" data-lang="ru" lang="ru">
+  <h1>Политика конфиденциальности</h1>
+  <p class="lead">RMW («Remind Me When», «мы») — приложение для iPhone: напоминания по месту и времени, друзья, чат, звонки и общие списки. Здесь — какие данные мы обрабатываем и зачем.</p>
+  <p class="date">Обновлено 12 ноября 2026</p>
 
-<h3>Кому мы доверяем обработку</h3>
-<ul>
-<li><b>Supabase</b> — база данных, вход, хранение файлов и серверные функции, серверы в ЕС.</li>
-<li><b>Brevo</b> — отправляет код для входа на почту.</li>
-<li><b>Apple</b> и <b>Expo</b> — доставляют push-уведомления. Apple также — App Store, карты и распознавание речи на устройстве.</li>
-<li><b>Поиск адресов:</b> когда вы ищете место, текст запроса и примерная позиция уходят в поиск на основе OpenStreetMap (Photon, Nominatim) или в поиск Apple. Текст напоминания туда не уходит.</li>
-</ul>
+  <div class="band">
+    <svg class="rings" viewBox="0 0 420 420" aria-hidden="true"><circle cx="210" cy="210" r="50" stroke-width="2"/><circle cx="210" cy="210" r="100" stroke-opacity=".7"/><circle cx="210" cy="210" r="150" stroke-opacity=".45"/><circle cx="210" cy="210" r="205" stroke-opacity=".25"/><circle class="dot" cx="210" cy="210" r="9"/></svg>
+    <h2>Сквозное шифрование</h2>
+    <p>Места, напоминания, даты, чаты и общие списки шифруются на iPhone до отправки на сервер. Ключи остаются на ваших устройствах (и у друзей, с которыми вы делитесь), поэтому мы храним эти данные только в зашифрованном виде и прочитать их не можем. Если вы потеряете все устройства и код восстановления, восстановить их мы не сможем.</p>
+  </div>
 
-<h3>Основания, сроки, ваши права</h3>
-<p>Мы обрабатываем данные, чтобы оказывать сервис, о котором вы просите (ст. 6(1)(b) GDPR); геопозицией делимся с вашего согласия, отозвать его можно в любой момент в приложении или в настройках iPhone.
-Данные хранятся, пока вы их не удалите или не удалите аккаунт. <b>Удалить аккаунт и все данные</b> можно в приложении: Профиль → Удалить аккаунт. Удаление сразу и без возможности восстановления.
-Вы вправе получить, исправить, выгрузить и удалить свои данные и пожаловаться в надзорный орган (в Литве — Государственная инспекция по защите данных, vdai.lrv.lt). Связаться с нами — на странице <a href="../support/">Поддержка</a>.</p>
-<p>RMW не предназначено для детей младше 14 лет.</p>
-</section>
+  <ul class="facts">
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><b>Без рекламы</b>Мы не продаём данные и не показываем рекламу.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><path d="M4 20L20 4"/></svg><b>Без слежки</b>Не отслеживаем вас в других приложениях и на сайтах и не используем сторонние SDK аналитики и рекламы.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><b>Удаление в приложении</b>Профиль → Удалить аккаунт: аккаунт и все данные удаляются сразу.</li>
+  </ul>
 
-<section class="card" id="lt">
-<h2>Privatumo politika</h2>
-<p>RMW („Remind Me When“, „mes“) – „iPhone“ programėlė priminimams pagal vietą ir laiką, su draugais, pokalbiais, skambučiais ir bendrais sąrašais.
-Mes neparduodame duomenų, nerodome reklamos, nesekame jūsų kitose programėlėse ar svetainėse ir nenaudojame trečiųjų šalių analitikos ar reklamos SDK.</p>
+  <h2 class="sec">Что видит наш сервер</h2>
+  <dl class="rows">
+    <div><dt>Аккаунт</dt><dd>Почта (для входа по одноразовому коду).</dd></div>
+    <div><dt>Профиль</dt><dd>Имя, @ник, фото и «о себе», которые вы указали. Их видят друзья и те, кто знает ваш точный @ник.</dd></div>
+    <div><dt>Друзья</dt><dd>С кем вы дружите, заявки в друзья.</dd></div>
+    <div><dt>Служебные данные</dt><dd>То, что нужно для синхронизации и доставки: идентификаторы записей, время, к какому другу относится сообщение или общий список, токен push-уведомлений.</dd></div>
+    <div><dt>Геопозиция</dt><dd>Если в «Профиль → Приватность» включено «Делиться местоположением», приложение отправляет <b>последнюю точку</b> (одну, каждый раз перезаписывается), чтобы друзья узнали, что вы рядом. Историю перемещений мы не храним. Напоминания по месту проверяются на самом iPhone, для них это не нужно.<br><span class="opt">Только если включите</span></dd></div>
+    <div><dt>События использования</dt><dd>Несколько событий без содержимого, привязанных к аккаунту (например «открыл приложение», «создал напоминание», «напоминание сработало»), чтобы понимать, какие функции работают. Текста напоминаний, мест и сообщений в них нет.</dd></div>
+    <div><dt>Звонки</dt><dd>Чтобы соединить звонок, сервер передаёт служебные данные соединения между вами и другом. Звук и видео шифруются между устройствами; если прямое соединение невозможно, зашифрованный поток идёт через сервер-ретранслятор, который не может его расшифровать.</dd></div>
+  </dl>
 
-<h3>Ištisinis šifravimas</h3>
-<p>Vietos, priminimai, datos, pokalbiai ir bendri sąrašai užšifruojami jūsų „iPhone“ prieš siunčiant į serverį. Raktai lieka jūsų įrenginiuose (ir pas draugus, su kuriais dalijatės), todėl šių duomenų perskaityti negalime.
-Praradę visus įrenginius ir atkūrimo kodą, jų atkurti negalėsime.</p>
+  <h2 class="sec">Кому мы доверяем обработку</h2>
+  <dl class="rows">
+    <div><dt>Supabase</dt><dd>База данных, вход, хранение файлов и серверные функции, серверы в ЕС.</dd></div>
+    <div><dt>Brevo</dt><dd>Отправляет код для входа на почту.</dd></div>
+    <div><dt>Apple и Expo</dt><dd>Доставляют push-уведомления. Apple также — App Store, карты и распознавание речи на устройстве.</dd></div>
+    <div><dt>Поиск адресов</dt><dd>Когда вы ищете место, текст запроса и примерная позиция уходят в поиск на основе OpenStreetMap (Photon, Nominatim) или в поиск Apple. Текст напоминания туда не уходит.</dd></div>
+  </dl>
 
-<h3>Ką mato mūsų serveris</h3>
-<ul>
-<li><b>Paskyra:</b> el. paštas (prisijungimui vienkartiniu kodu).</li>
-<li><b>Profilis:</b> vardas, @slapyvardis, nuotrauka ir „apie mane“. Juos mato draugai ir tie, kas žino tikslų jūsų @slapyvardį.</li>
-<li><b>Draugai:</b> su kuo draugaujate, kvietimai.</li>
-<li><b>Tarnybiniai duomenys:</b> įrašų ID, laikas, kuriam draugui priklauso žinutė ar sąrašas, pranešimų žetonas.</li>
-<li><b>Vieta (tik įjungus):</b> įjungus „Dalytis vieta“, siunčiama <b>paskutinė vieta</b> (vienas taškas, kaskart perrašomas), kad draugai sužinotų, kai esate šalia. Judėjimo istorijos nesaugome.</li>
-<li><b>Naudojimo įvykiai:</b> keli įvykiai be turinio (pvz., „atidarė programėlę“, „sukūrė priminimą“), susieti su paskyra.</li>
-<li><b>Skambučiai:</b> garsas ir vaizdas šifruojami tarp įrenginių; jei reikia, užšifruotas srautas eina per retransliavimo serverį, kuris jo iššifruoti negali.</li>
-</ul>
+  <h2 class="sec">Основания, сроки, ваши права</h2>
+  <p>Мы обрабатываем данные, чтобы оказывать сервис, о котором вы просите (ст. 6(1)(b) GDPR); геопозицией делимся с вашего согласия, отозвать его можно в любой момент в приложении или в настройках iPhone.</p>
+  <p>Данные хранятся, пока вы их не удалите или не удалите аккаунт.</p>
+  <div class="callout"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><p><b>Удалить аккаунт и все данные</b> можно в приложении: Профиль → Удалить аккаунт. Удаление сразу и без возможности восстановления.</p></div>
+  <p>Вы вправе получить, исправить, выгрузить и удалить свои данные и пожаловаться в надзорный орган (в Литве — Государственная инспекция по защите данных, <a href="https://vdai.lrv.lt">vdai.lrv.lt</a>). Связаться с нами — на странице <a href="../support/#ru">Поддержка</a>.</p>
+  <p class="muted">RMW не предназначено для детей младше 14 лет.</p>
+</article>
 
-<h3>Paslaugų teikėjai</h3>
-<p>Supabase (duomenų bazė ir serveris ES), Brevo (prisijungimo kodas el. paštu), Apple ir Expo (pranešimai), OpenStreetMap paieška (Photon, Nominatim) ir Apple paieška (adresų paieškai gauna užklausos tekstą ir apytikslę vietą).</p>
+<!-- ===================== Lietuvių ===================== -->
+<article id="lt" data-lang="lt" lang="lt">
+  <h1>Privatumo politika</h1>
+  <p class="lead">RMW („Remind Me When“, „mes“) – „iPhone“ programėlė priminimams pagal vietą ir laiką, su draugais, pokalbiais, skambučiais ir bendrais sąrašais.</p>
+  <p class="date">Atnaujinta 2026 m. lapkričio 12 d.</p>
 
-<h3>Teisinis pagrindas ir jūsų teisės</h3>
-<p>Duomenis tvarkome paslaugai teikti (BDAR 6 str. 1 d. b p.); vietos dalijimasis – jūsų sutikimu, kurį galite bet kada atšaukti.
-<b>Ištrinti paskyrą ir visus duomenis</b> galite programėlėje: Profilis → Ištrinti paskyrą.
-Turite teisę susipažinti su duomenimis, juos ištaisyti, perkelti, ištrinti ir pateikti skundą Valstybinei duomenų apsaugos inspekcijai (vdai.lrv.lt). Susisiekite per <a href="../support/">pagalbos</a> puslapį.</p>
-<p>RMW neskirta jaunesniems nei 14 metų vaikams.</p>
-</section>
+  <div class="band">
+    <svg class="rings" viewBox="0 0 420 420" aria-hidden="true"><circle cx="210" cy="210" r="50" stroke-width="2"/><circle cx="210" cy="210" r="100" stroke-opacity=".7"/><circle cx="210" cy="210" r="150" stroke-opacity=".45"/><circle cx="210" cy="210" r="205" stroke-opacity=".25"/><circle class="dot" cx="210" cy="210" r="9"/></svg>
+    <h2>Ištisinis šifravimas</h2>
+    <p>Vietos, priminimai, datos, pokalbiai ir bendri sąrašai užšifruojami jūsų „iPhone“ prieš siunčiant į serverį. Raktai lieka jūsų įrenginiuose (ir pas draugus, su kuriais dalijatės), todėl šių duomenų perskaityti negalime. Praradę visus įrenginius ir atkūrimo kodą, jų atkurti negalėsime.</p>
+  </div>
+
+  <ul class="facts">
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg><b>Be reklamos</b>Mes neparduodame duomenų ir nerodome reklamos.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><path d="M4 20L20 4"/></svg><b>Be sekimo</b>Nesekame jūsų kitose programėlėse ar svetainėse ir nenaudojame trečiųjų šalių analitikos ar reklamos SDK.</li>
+    <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><b>Ištrynimas programėlėje</b>Profilis → Ištrinti paskyrą.</li>
+  </ul>
+
+  <h2 class="sec">Ką mato mūsų serveris</h2>
+  <dl class="rows">
+    <div><dt>Paskyra</dt><dd>El. paštas (prisijungimui vienkartiniu kodu).</dd></div>
+    <div><dt>Profilis</dt><dd>Vardas, @slapyvardis, nuotrauka ir „apie mane“. Juos mato draugai ir tie, kas žino tikslų jūsų @slapyvardį.</dd></div>
+    <div><dt>Draugai</dt><dd>Su kuo draugaujate, kvietimai.</dd></div>
+    <div><dt>Tarnybiniai duomenys</dt><dd>Įrašų ID, laikas, kuriam draugui priklauso žinutė ar sąrašas, pranešimų žetonas.</dd></div>
+    <div><dt>Vieta</dt><dd>Įjungus „Dalytis vieta“, siunčiama <b>paskutinė vieta</b> (vienas taškas, kaskart perrašomas), kad draugai sužinotų, kai esate šalia. Judėjimo istorijos nesaugome.<br><span class="opt">Tik įjungus</span></dd></div>
+    <div><dt>Naudojimo įvykiai</dt><dd>Keli įvykiai be turinio (pvz., „atidarė programėlę“, „sukūrė priminimą“), susieti su paskyra.</dd></div>
+    <div><dt>Skambučiai</dt><dd>Garsas ir vaizdas šifruojami tarp įrenginių; jei reikia, užšifruotas srautas eina per retransliavimo serverį, kuris jo iššifruoti negali.</dd></div>
+  </dl>
+
+  <h2 class="sec">Paslaugų teikėjai</h2>
+  <dl class="rows">
+    <div><dt>Supabase</dt><dd>Duomenų bazė ir serveris ES.</dd></div>
+    <div><dt>Brevo</dt><dd>Prisijungimo kodas el. paštu.</dd></div>
+    <div><dt>Apple ir Expo</dt><dd>Pranešimai.</dd></div>
+    <div><dt>Adresų paieška</dt><dd>OpenStreetMap paieška (Photon, Nominatim) ir Apple paieška gauna užklausos tekstą ir apytikslę vietą.</dd></div>
+  </dl>
+
+  <h2 class="sec">Teisinis pagrindas ir jūsų teisės</h2>
+  <p>Duomenis tvarkome paslaugai teikti (BDAR 6 str. 1 d. b p.); vietos dalijimasis – jūsų sutikimu, kurį galite bet kada atšaukti.</p>
+  <div class="callout"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><p><b>Ištrinti paskyrą ir visus duomenis</b> galite programėlėje: Profilis → Ištrinti paskyrą.</p></div>
+  <p>Turite teisę susipažinti su duomenimis, juos ištaisyti, perkelti, ištrinti ir pateikti skundą Valstybinei duomenų apsaugos inspekcijai (<a href="https://vdai.lrv.lt">vdai.lrv.lt</a>). Susisiekite per <a href="../support/">pagalbos</a> puslapį.</p>
+  <p class="muted">RMW neskirta jaunesniems nei 14 metų vaikams.</p>
+</article>
+
 </main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RMW</span>
+    <span class="spacer"></span>
+    <a href="../" data-t="home">Home</a>
+    <a href="../support/" data-t="support">Support</a>
+    <a href="mailto:puchkov.web@gmail.com">puchkov.web@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Язык: #en/#ru/#lt в адресе → выбор на главной (localStorage 'lang') → язык телефона → английский.
+  var T = {"en": {"title": "RMW — Privacy Policy", "home": "Home", "support": "Support"}, "ru": {"title": "RMW — Политика конфиденциальности", "home": "Главная", "support": "Поддержка"}, "lt": {"title": "RMW — Privatumo politika", "home": "Pradžia", "support": "Pagalba"}};
+  var langs = Object.keys(T);
+  var arts = document.querySelectorAll('[data-lang]');
+  var btns = document.querySelectorAll('[data-set]');
+  function pick() {
+    var h = location.hash.slice(1);
+    if (langs.indexOf(h) >= 0) return h;
+    var s = null;
+    try { s = localStorage.getItem('lang'); } catch (e) {}
+    if (s && langs.indexOf(s) >= 0) return s;
+    var n = (navigator.language || '').toLowerCase().slice(0, 2);
+    return langs.indexOf(n) >= 0 ? n : 'en';
+  }
+  function apply(l) {
+    for (var i = 0; i < arts.length; i++) arts[i].classList.toggle('on', arts[i].getAttribute('data-lang') === l);
+    for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-set') === l ? 'true' : 'false');
+    document.documentElement.lang = l;
+    document.title = T[l].title;
+    var els = document.querySelectorAll('[data-t]');
+    for (var k = 0; k < els.length; k++) els[k].textContent = T[l][els[k].getAttribute('data-t')];
+  }
+  for (var b = 0; b < btns.length; b++) btns[b].addEventListener('click', function () {
+    var l = this.getAttribute('data-set');
+    // Главная знает только en/ru — литовский не сохраняем, чтобы её не сломать.
+    if (l !== 'lt') { try { localStorage.setItem('lang', l); } catch (e) {} }
+    try { history.replaceState(null, '', '#' + l); } catch (e) {}
+    apply(l);
+    window.scrollTo(0, 0);
+  });
+  window.addEventListener('hashchange', function () { var h = location.hash.slice(1); if (langs.indexOf(h) >= 0) apply(h); });
+  apply(pick());
+})();
+</script>
 </body>
 </html>
