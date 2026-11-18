@@ -1,38 +1,334 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>RMW</title>
-    <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
-    <style id="expo-reset">
-      /* These styles make the body full-height */
-      html,
-      body {
-        height: 100%;
-      }
-      /* These styles disable body scrolling if you are using <ScrollView> */
-      body {
-        overflow: hidden;
-      }
-      /* These styles make the root element full-height */
-      #root {
-        display: flex;
-        height: 100%;
-        flex: 1;
-      }
-    </style>
-  <link rel="icon" href="/favicon.ico"/><link rel="preload" href="/_expo/static/css/native-tabs.module-78b0f59737571f455720970791a36bdd.css" as="style">
-<link rel="stylesheet" href="/_expo/static/css/native-tabs.module-78b0f59737571f455720970791a36bdd.css"><link rel="preload" href="/_expo/static/css/maplibre-gl-251fdbfda84eb147f0a36795135ef43b.css" as="style">
-<link rel="stylesheet" href="/_expo/static/css/maplibre-gl-251fdbfda84eb147f0a36795135ef43b.css"><link rel="preload" href="/_expo/static/css/map-dark-45c3548bdc2ced95dfd3811da366f3a2.css" as="style">
-<link rel="stylesheet" href="/_expo/static/css/map-dark-45c3548bdc2ced95dfd3811da366f3a2.css"></head>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RMW — Remind Me When</title>
+<meta name="description" content="Напоминания для iPhone, которые срабатывают в нужном месте, в нужное время и когда друг рядом.">
+<meta name="theme-color" content="#ECEFF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
+<meta name="apple-itunes-app" content="app-id=6831954343">
+<meta property="og:title" content="RMW — Remind Me When">
+<meta property="og:description" content="Напомнит там, где это нужно: у магазина, дома, на работе — и когда друг рядом.">
+<meta property="og:image" content="img/icon.png">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --mist: #ECEFF5; --card: #FBFCFE;
+  --cobalt: #2D47C7; --cobalt-deep: #1F3496;
+  --ink: #111A2E; --ink-2: rgba(17,26,46,.66); --ink-3: rgba(17,26,46,.5);
+  --line: rgba(17,26,46,.1); --signal: #FF6A2B;
+  --land: #F5F7FB; --block: #E1E6EF; --park: #D5E3DB; --water: #CAD6F0; --road: #FFFFFF;
+  --topo: rgba(45,71,199,.16); --band: #2D47C7;
+  --shadow: 0 24px 60px -24px rgba(17,26,46,.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mist: #0F1115; --card: #191C22;
+    --cobalt: #6C84F0; --cobalt-deep: #2F44A8;
+    --ink: #EDEFF3; --ink-2: rgba(237,239,243,.7); --ink-3: rgba(237,239,243,.5);
+    --line: rgba(237,239,243,.09); --signal: #FF7A3D;
+    --land: #1B1E25; --block: #23272F; --park: #1B2D29; --water: #1D2944; --road: #2F343D;
+    --topo: rgba(108,132,240,.2); --band: #2F44A8;
+    --shadow: 0 24px 60px -24px rgba(0,0,0,.8);
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 17px/1.55 Onest, -apple-system, system-ui, sans-serif; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 700px) { .wrap { padding: 0 32px; } }
+h1, h2, h3 { font-family: Unbounded, Onest, sans-serif; font-weight: 600; letter-spacing: -.02em; margin: 0; }
 
-  <body>
-    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <!-- The root element for your Expo app. -->
-    <div id="root"></div>
-  <script src="/_expo/static/js/web/__expo-metro-runtime-8c088df87a31e4e6accd81c554ec290d.js" defer></script><script src="/_expo/static/js/web/__common-84d631443c7ea28d427271de58764a62.js" defer></script><script src="/_expo/static/js/web/index-ec6f726a7918f2f8477a47771bdd6c21.js" defer></script>
+header { padding: 20px 0; }
+header .wrap { display: flex; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 18px; }
+.brand img { width: 36px; height: 36px; border-radius: 9px; }
+.spacer { flex: 1; }
+.lang { font: 500 15px Onest, sans-serif; color: var(--ink-2); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 40px; min-width: 52px; }
+.lang:hover { color: var(--ink); }
+
+.store { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--mist); text-decoration: none; border-radius: 14px; padding: 10px 22px 10px 16px; font-weight: 600; font-size: 19px; min-height: 56px; transition: transform .15s ease; }
+.store:active { transform: scale(.97); }
+.store svg { width: 24px; height: 24px; fill: currentColor; flex: none; }
+.store small { display: block; font-weight: 400; font-size: 12px; opacity: .75; line-height: 1.1; }
+.store span { line-height: 1.15; }
+header .store { padding: 8px 16px 8px 13px; min-height: 40px; border-radius: 999px; font-size: 15px; }
+header .store svg { width: 17px; height: 17px; }
+
+.hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; padding: 40px 0 104px; }
+.hero h1 { font-size: clamp(38px, 6.2vw, 74px); line-height: 1.04; }
+.lead { font-size: clamp(18px, 2vw, 21px); color: var(--ink-2); max-width: 32ch; margin: 24px 0 32px; }
+.note { color: var(--ink-3); font-size: 14px; margin: 14px 0 0; }
+
+.map { position: relative; aspect-ratio: 1; border-radius: 36px; overflow: hidden; background: var(--land); box-shadow: var(--shadow); }
+.map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.map .block { fill: var(--block); }
+.map .park { fill: var(--park); }
+.map .water { fill: var(--water); }
+.map .road { stroke: var(--road); fill: none; stroke-linecap: round; }
+.map .topo { stroke: var(--topo); fill: none; stroke-width: 1.4; }
+.map .zone { fill: var(--cobalt); fill-opacity: .1; stroke: var(--cobalt); stroke-width: 2; }
+.map .ring { fill: none; stroke: var(--cobalt); }
+.map .pin { fill: var(--cobalt); }
+.map .me { fill: var(--signal); stroke: var(--card); stroke-width: 4; }
+.map .ping { fill: none; stroke: var(--signal); stroke-width: 3; opacity: 0; }
+
+.push { position: absolute; left: 6%; right: 6%; top: 6%; display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 22px;
+  background: color-mix(in srgb, var(--card) 84%, transparent); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 12px 30px -12px rgba(17,26,46,.35); opacity: 0; transform: translateY(-24px) scale(.96);
+  animation: push .6s cubic-bezier(.2,.9,.25,1.15) 2.8s forwards; }
+.push img { width: 38px; height: 38px; border-radius: 9px; flex: none; }
+.push .body { flex: 1; min-width: 0; }
+.push .t { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; color: var(--ink-3); }
+.push b { display: block; font-size: 16px; color: var(--ink); margin-top: 1px; }
+.push p { margin: 0; font-size: 15px; color: var(--ink-2); line-height: 1.35; }
+@keyframes push { to { opacity: 1; transform: none; } }
+
+.block-s { padding: 104px 0; }
+.kicker { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.12; max-width: 20ch; }
+.sub { color: var(--ink-2); max-width: 54ch; margin: 18px 0 0; }
+.triggers { margin-top: 56px; border-top: 1px solid var(--line); }
+.trigger { display: grid; grid-template-columns: 240px 1fr 1fr; gap: 32px; align-items: center; padding: 36px 0; border-bottom: 1px solid var(--line); }
+.trigger h3 { font-size: 24px; display: flex; align-items: center; gap: 14px; }
+.trigger h3 svg { width: 30px; height: 30px; stroke: var(--cobalt); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.trigger p { margin: 0; color: var(--ink-2); }
+.example { background: var(--card); border-radius: 18px; padding: 14px 18px; font-size: 15px; line-height: 1.4; border: 1px solid var(--line); }
+.example b { display: block; font-weight: 600; color: var(--ink); }
+.example span { color: var(--ink-3); }
+
+.more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px 48px; margin-top: 56px; }
+.more div { border-left: 2px solid var(--cobalt); padding-left: 18px; }
+.more h4 { margin: 0 0 6px; font-size: 18px; font-weight: 600; }
+.more p { margin: 0; color: var(--ink-2); font-size: 16px; }
+
+.private { background: var(--band); color: #fff; border-radius: 40px; padding: 72px clamp(24px, 6vw, 80px); position: relative; overflow: hidden; }
+.private h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.12; max-width: 16ch; position: relative; }
+.private p { max-width: 46ch; color: rgba(255,255,255,.85); margin: 20px 0 0; position: relative; }
+.private svg { position: absolute; right: -120px; top: 50%; width: 560px; height: 560px; transform: translateY(-50%); opacity: .35; }
+.private svg circle { fill: none; stroke: #fff; }
+.private .dot { fill: var(--signal); stroke: none; }
+
+.final { text-align: center; padding: 120px 0 104px; }
+.final img { width: 96px; height: 96px; border-radius: 22px; box-shadow: var(--shadow); }
+.final h2 { font-size: clamp(28px, 4vw, 48px); margin: 28px auto; max-width: 18ch; line-height: 1.12; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); color: var(--ink-3); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
+footer a:hover { color: var(--ink); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; padding: 16px 0 80px; }
+  .trigger { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
+  .more { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .block-s { padding: 80px 0; }
+  .private { border-radius: 28px; padding: 48px 24px 56px; }
+  .private svg { width: 380px; height: 380px; right: -170px; top: -60px; transform: none; }
+}
+@media (max-width: 560px) {
+  .more { grid-template-columns: 1fr; }
+  header .store { display: none; }
+  .map { border-radius: 28px; }
+  footer .spacer { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .push { animation: none; opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="img/apple-touch-icon.png" alt="" width="36" height="36">RMW</a>
+    <span class="spacer"></span>
+    <button class="lang" type="button" id="lang">EN</button>
+    <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span data-i="get">Скачать</span></a>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div class="hero">
+    <div>
+      <h1 data-i="h1">Напомнит, когда вы&nbsp;там</h1>
+      <p class="lead" data-i="lead">Купить хлеб — у магазина. Выключить утюг — на выходе из дома. Отдать книгу — когда друг рядом. RMW срабатывает в нужном месте, а не в случайное время.</p>
+      <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small data-i="dl">Загрузите в</small>App Store</span></a>
+      <p class="note" data-i="note">Бесплатно, для iPhone</p>
+    </div>
+
+    <div class="map" role="img" aria-label="Карта: человек подходит к магазину, и на экране появляется напоминание" data-i-aria="mapAria">
+      <svg viewBox="0 0 560 560" aria-hidden="true">
+        <path class="water" d="M0 400 C90 380 150 430 230 470 C300 505 330 560 330 560 L0 560 Z"/>
+        <rect class="park" x="408" y="36" width="120" height="104" rx="18"/>
+        <rect class="block" x="36" y="40" width="130" height="104" rx="14"/>
+        <rect class="block" x="226" y="40" width="130" height="104" rx="14"/>
+        <rect class="block" x="36" y="206" width="130" height="150" rx="14"/>
+        <rect class="block" x="408" y="206" width="120" height="100" rx="14"/>
+        <rect class="block" x="408" y="340" width="120" height="180" rx="14"/>
+        <g class="topo">
+          <path d="M-20 520 C60 500 120 520 180 548"/>
+          <path d="M-20 545 C40 530 90 545 130 570"/>
+          <path d="M380 590 C400 520 470 480 590 470"/>
+          <path d="M420 590 C440 540 500 510 590 505"/>
+          <path d="M460 590 C475 560 520 540 590 538"/>
+        </g>
+        <path class="road" stroke-width="22" d="M0 175 H560"/>
+        <path class="road" stroke-width="22" d="M380 0 V560"/>
+        <path class="road" stroke-width="14" d="M196 175 V380 C196 420 170 440 120 470 L40 540"/>
+        <circle class="ring" cx="290" cy="300" r="150" stroke-opacity=".12" stroke-width="1.5"/>
+        <circle class="ring" cx="290" cy="300" r="112" stroke-opacity=".22" stroke-width="1.5"/>
+        <circle class="zone" cx="290" cy="300" r="74"/>
+        <circle class="pin" cx="290" cy="300" r="9"/>
+        <circle class="ping" cx="290" cy="300" r="74">
+          <animate attributeName="r" from="74" to="190" dur="1.4s" begin="me.end" fill="freeze"/>
+          <animate attributeName="opacity" values="0;.8;0" dur="1.4s" begin="me.end" fill="freeze"/>
+        </circle>
+        <circle class="me" r="11" cx="0" cy="0" id="dot">
+          <animateMotion id="me" dur="2.6s" begin="0s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".45 0 .25 1" path="M60 522 L120 470 C170 440 196 420 196 380 L196 330 C200 310 230 300 258 300"/>
+        </circle>
+      </svg>
+      <div class="push" aria-hidden="true">
+        <img src="img/apple-touch-icon.png" alt="">
+        <div class="body">
+          <div class="t"><span>RMW</span><span data-i="now">сейчас</span></div>
+          <b data-i="pushT">Вы у магазина</b>
+          <p data-i="pushB">Купить хлеб и молоко</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="block-s">
+  <div class="wrap">
+    <h2 class="kicker" data-i="h2a">Напоминание само знает, когда сработать</h2>
+    <p class="sub" data-i="sub2a">Выберите, что должно случиться: вы пришли в место, наступило время или рядом оказался друг. Дальше RMW следит сам, даже когда приложение закрыто.</p>
+    <div class="triggers">
+      <div class="trigger">
+        <h3><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="3"/><circle cx="16" cy="16" r="8"/><circle cx="16" cy="16" r="13"/></svg><span data-i="tPlace">Место</span></h3>
+        <p data-i="tPlaceD">Дом, работа, магазин, спортзал. Напомнит, когда придёте или когда уйдёте.</p>
+        <div class="example"><b data-i="tPlaceE">Полить цветы</b><span data-i="tPlaceW">когда приду домой</span></div>
+      </div>
+      <div class="trigger">
+        <h3><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg><span data-i="tTime">Время</span></h3>
+        <p data-i="tTimeD">Разово или по расписанию: каждый день, по будням, раз в месяц. Плюс дни рождения и важные даты.</p>
+        <div class="example"><b data-i="tTimeE">Выпить таблетку</b><span data-i="tTimeW">каждый день в 9:00</span></div>
+      </div>
+      <div class="trigger">
+        <h3><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="12" r="4"/><circle cx="22" cy="12" r="4"/><path d="M4 26c0-4 3-7 7-7s7 3 7 7M18 21c1-1.3 2.4-2 4-2 4 0 6 3 6 7"/></svg><span data-i="tFriend">Друг рядом</span></h3>
+        <p data-i="tFriendD">Напомнит, когда друг окажется поблизости. Только с теми, кто сам согласился делиться местом.</p>
+        <div class="example"><b data-i="tFriendE">Вернуть Лёше книгу</b><span data-i="tFriendW">когда Лёша рядом</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block-s" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="kicker" data-i="h2b">И ещё то, что не хочется держать в голове</h2>
+    <div class="more">
+      <div><h4 data-i="m1">Общие списки</h4><p data-i="m1d">Покупки на двоих: вычеркнул один — видят все.</p></div>
+      <div><h4 data-i="m2">Где я оставил</h4><p data-i="m2d">Запомнит, где машина или велосипед, одним нажатием.</p></div>
+      <div><h4 data-i="m3">Чаты и звонки</h4><p data-i="m3d">Переписка с друзьями рядом с общими делами.</p></div>
+      <div><h4 data-i="m4">Даты</h4><p data-i="m4d">Дни рождения и годовщины с напоминанием заранее.</p></div>
+      <div><h4 data-i="m5">Виджеты</h4><p data-i="m5d">Ближайшие дела на экране «Домой», в светлой и тёмной теме.</p></div>
+      <div><h4 data-i="m6">Идеи</h4><p data-i="m6d">Готовые напоминания: ключи на выходе, бельё в машинке.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="private">
+    <svg viewBox="0 0 560 560" aria-hidden="true"><circle cx="280" cy="280" r="60" stroke-width="2"/><circle cx="280" cy="280" r="120" stroke-opacity=".7"/><circle cx="280" cy="280" r="190" stroke-opacity=".45"/><circle cx="280" cy="280" r="270" stroke-opacity=".25"/><circle class="dot" cx="280" cy="280" r="10"/></svg>
+    <h2 data-i="h2c">Ваши места знает только ваш iPhone</h2>
+    <p data-i="pc">Места, напоминания и списки шифруются на телефоне до отправки. На сервере они лежат в виде, который мы сами прочитать не можем. Рекламы и продажи данных нет.</p>
+  </div>
+</div>
+
+<div class="final">
+  <div class="wrap">
+    <img src="img/icon.png" alt="" width="96" height="96">
+    <h2 data-i="h2d">Хватит держать всё в голове</h2>
+    <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small data-i="dl">Загрузите в</small>App Store</span></a>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RMW</span>
+    <span class="spacer"></span>
+    <a href="support/" data-i="fSupport">Поддержка</a>
+    <a href="privacy/" data-i="fPrivacy">Конфиденциальность</a>
+    <a href="mailto:puchkov.web@gmail.com">puchkov.web@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var en = {
+    get: 'Get', dl: 'Download on the', note: 'Free, for iPhone', now: 'now',
+    h1: 'Reminds you when you’re&nbsp;there',
+    lead: 'Buy bread at the store. Unplug the iron on your way out. Return a book when your friend is nearby. RMW goes off in the right place, not at a random time.',
+    mapAria: 'Map: a person walks up to a store and a reminder appears on screen',
+    pushT: 'You’re at the store', pushB: 'Buy bread and milk',
+    h2a: 'Each reminder knows when to go off',
+    sub2a: 'Pick what should happen: you arrive somewhere, the time comes, or a friend is close by. RMW keeps watch even when the app is closed.',
+    tPlace: 'Place', tPlaceD: 'Home, work, the store, the gym. Get reminded when you arrive or when you leave.', tPlaceE: 'Water the plants', tPlaceW: 'when I get home',
+    tTime: 'Time', tTimeD: 'Once or on a schedule: every day, on weekdays, once a month. Plus birthdays and important dates.', tTimeE: 'Take my pill', tTimeW: 'every day at 9:00',
+    tFriend: 'Friend nearby', tFriendD: 'Get reminded when a friend is close. Only with people who chose to share their location.', tFriendE: 'Give Alex his book back', tFriendW: 'when Alex is nearby',
+    h2b: 'And more things you don’t want to keep in your head',
+    m1: 'Shared lists', m1d: 'Groceries for two: one person checks it off, everyone sees it.',
+    m2: 'Where I parked', m2d: 'Saves where you left the car or bike with one tap.',
+    m3: 'Chats and calls', m3d: 'Talk to friends right next to the things you share.',
+    m4: 'Dates', m4d: 'Birthdays and anniversaries with a heads-up in advance.',
+    m5: 'Widgets', m5d: 'Upcoming tasks on your Home Screen, in light and dark.',
+    m6: 'Ideas', m6d: 'Ready-made reminders: keys by the door, laundry in the machine.',
+    h2c: 'Only your iPhone knows your places',
+    pc: 'Places, reminders and lists are encrypted on your phone before they leave it. On our server they sit in a form we can’t read ourselves. No ads, no selling data.',
+    h2d: 'Stop keeping it all in your head',
+    fSupport: 'Support', fPrivacy: 'Privacy'
+  };
+  var ru = {};
+  document.querySelectorAll('[data-i]').forEach(function (el) { ru[el.dataset.i] = el.innerHTML; });
+  document.querySelectorAll('[data-i-aria]').forEach(function (el) { ru[el.dataset.iAria] = el.getAttribute('aria-label'); });
+  var ruMeta = document.querySelector('meta[name="description"]').content, ruOg = document.querySelector('meta[property="og:description"]').content;
+  var btn = document.getElementById('lang');
+  function apply(lang) {
+    var d = lang === 'en' ? en : ru;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i]').forEach(function (el) { if (d[el.dataset.i]) el.innerHTML = d[el.dataset.i]; });
+    document.querySelectorAll('[data-i-aria]').forEach(function (el) { el.setAttribute('aria-label', d[el.dataset.iAria]); });
+    var md = lang === 'en' ? 'Reminders for iPhone that go off in the right place, at the right time, and when a friend is nearby.' : ruMeta;
+    var og = lang === 'en' ? 'Reminds you where it matters: at the store, at home, at work, and when a friend is nearby.' : ruOg;
+    document.querySelector('meta[name="description"]').setAttribute('content', md);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', og);
+    btn.textContent = lang === 'en' ? 'RU' : 'EN';
+    btn.setAttribute('aria-label', lang === 'en' ? 'Переключить на русский' : 'Switch to English');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var lang = saved || ((navigator.language || 'ru').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
+  apply(lang);
+  btn.addEventListener('click', function () {
+    lang = lang === 'en' ? 'ru' : 'en';
+    apply(lang);
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  });
+  // Без анимаций: точка сразу у магазина.
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var dot = document.getElementById('dot');
+    dot.querySelector('animateMotion').remove();
+    dot.setAttribute('transform', 'translate(258 300)');
+  }
+})();
+</script>
 </body>
 </html>
