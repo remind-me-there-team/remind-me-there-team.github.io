@@ -1,219 +1,23 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>RMW — Support</title>
-<meta name="description" content="RMW support: contact us and answers to common questions.">
-<meta name="theme-color" content="#ECEFF5" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="../favicon.png">
-<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@600&display=swap" rel="stylesheet">
-<script>document.documentElement.className = 'js';</script>
-<style>
-:root {
-  --mist: #ECEFF5; --card: #FBFCFE; --cobalt: #2D47C7; --band: #2D47C7;
-  --ink: #111A2E; --ink-2: rgba(17,26,46,.68); --ink-3: rgba(17,26,46,.52);
-  --line: rgba(17,26,46,.1); --signal: #FF6A2B; --tint: rgba(45,71,199,.08);
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --mist: #0F1115; --card: #191C22; --cobalt: #8A9DF5; --band: #2F44A8;
-    --ink: #EDEFF3; --ink-2: rgba(237,239,243,.72); --ink-3: rgba(237,239,243,.52);
-    --line: rgba(237,239,243,.09); --signal: #FF7A3D; --tint: rgba(138,157,245,.1);
-  }
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body { margin: 0; background: var(--mist); color: var(--ink); font: 17px/1.6 Onest, -apple-system, system-ui, sans-serif; overflow-x: hidden; }
-a { color: var(--cobalt); text-underline-offset: 3px; }
-:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 6px; }
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-@media (min-width: 700px) { .wrap { padding: 0 32px; } }
-h1, h2 { font-family: Unbounded, Onest, sans-serif; font-weight: 600; letter-spacing: -.02em; margin: 0; }
-
-header { padding: 20px 0; }
-header .wrap { display: flex; align-items: center; gap: 12px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 18px; }
-.brand img { width: 36px; height: 36px; border-radius: 9px; }
-.spacer { flex: 1; }
-.langs { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
-.langs button { font: 500 14px Onest, sans-serif; color: var(--ink-2); background: none; border: 0; border-radius: 999px; padding: 6px 12px; min-height: 34px; min-width: 42px; cursor: pointer; }
-.langs button[aria-pressed="true"] { background: var(--ink); color: var(--mist); }
-.store { display: inline-flex; align-items: center; gap: 8px; background: var(--ink); color: var(--mist); text-decoration: none; border-radius: 999px; padding: 8px 16px 8px 13px; font-weight: 600; font-size: 15px; min-height: 40px; }
-.store svg { width: 17px; height: 17px; fill: currentColor; }
-
-.doc { max-width: 820px; padding-top: 40px; padding-bottom: 96px; }
-.doc h1 { font-size: clamp(30px, 6vw, 60px); line-height: 1.06; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
-@media (max-width: 480px) { .doc h1 { font-size: 28px; } }
-.lead { font-size: clamp(18px, 2vw, 21px); color: var(--ink-2); margin: 20px 0 0; max-width: 40ch; }
-.date { color: var(--ink-3); font-size: 14px; margin: 14px 0 0; }
-
-.band { position: relative; overflow: hidden; background: var(--band); color: #fff; border-radius: 32px; padding: 44px clamp(24px, 5vw, 56px); margin: 48px 0 0; }
-.band h2 { font-size: clamp(24px, 3.2vw, 34px); line-height: 1.15; max-width: 18ch; position: relative; }
-.band p { color: rgba(255,255,255,.88); margin: 16px 0 0; max-width: 48ch; position: relative; }
-.band svg.rings { position: absolute; right: -150px; top: -110px; width: 420px; height: 420px; opacity: .3; }
-.band svg.rings circle { fill: none; stroke: #fff; }
-.band svg.rings .dot { fill: var(--signal); stroke: none; }
-
-.facts { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.facts li { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 18px 18px 20px; font-size: 15px; line-height: 1.4; color: var(--ink-2); }
-.facts b { display: block; color: var(--ink); font-size: 16px; margin: 12px 0 4px; }
-.ico { width: 26px; height: 26px; stroke: var(--cobalt); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; }
-
-.doc h2.sec { font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; margin: 72px 0 8px; }
-.doc p { margin: 14px 0 0; }
-.rows { margin: 20px 0 0; border-top: 1px solid var(--line); }
-.rows > div { display: grid; grid-template-columns: 200px 1fr; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.rows dt { font-weight: 600; }
-.rows dd { margin: 0; color: var(--ink-2); }
-.rows .opt { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 500; color: var(--cobalt); background: var(--tint); border-radius: 999px; padding: 2px 10px; }
-
-.callout { display: flex; gap: 16px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--signal); border-radius: 18px; padding: 20px 22px; margin: 28px 0 0; }
-.callout .ico { stroke: var(--signal); flex: none; margin-top: 2px; }
-.callout p { margin: 0; }
-.muted { color: var(--ink-3); font-size: 15px; }
-
-details { border-bottom: 1px solid var(--line); }
-.faq { margin: 24px 0 0; border-top: 1px solid var(--line); }
-summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; font-weight: 600; font-size: 18px; min-height: 44px; }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: ""; flex: none; width: 10px; height: 10px; border-right: 2px solid var(--cobalt); border-bottom: 2px solid var(--cobalt); transform: rotate(45deg) translate(-3px, -3px); transition: transform .2s ease; }
-details[open] summary::after { transform: rotate(225deg) translate(-3px, -3px); }
-details p { margin: 0 0 22px; color: var(--ink-2); max-width: 62ch; }
-
-.mail { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; background: #fff; color: #1F3496; text-decoration: none; font-weight: 600; border-radius: 999px; padding: 12px 22px; min-height: 48px; position: relative; word-break: break-all; }
-.mail .ico { stroke: #1F3496; width: 20px; height: 20px; }
-
-footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); color: var(--ink-3); font-size: 15px; }
-footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
-footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
-
-@media (max-width: 700px) {
-  .facts { grid-template-columns: 1fr; }
-  .facts li { display: grid; grid-template-columns: 26px 1fr; gap: 0 14px; }
-  .facts li .ico { grid-row: span 2; }
-  .facts b { margin: 0 0 2px; }
-  .rows > div { grid-template-columns: 1fr; }
-  .band { border-radius: 26px; padding: 36px 22px 40px; margin-top: 36px; }
-  .band svg.rings { width: 300px; height: 300px; right: -150px; top: -120px; }
-  .doc { padding-top: 20px; }
-  .doc h2.sec { margin-top: 56px; }
-}
-@media (max-width: 480px) { header .store { display: none; } footer .spacer { display: none; } }
-@media (prefers-reduced-motion: reduce) { summary::after { transition: none; } }
-.js [data-lang] { display: none; }
-.js [data-lang].on { display: block; }
-</style>
-</head>
-<body>
-<header>
-  <div class="wrap">
-    <a class="brand" href="../"><img src="../img/apple-touch-icon.png" alt="" width="36" height="36">RMW</a>
-    <span class="spacer"></span>
-    <div class="langs" role="group" aria-label="Language">
-      <button type="button" data-set="en" lang="en">EN</button>
-      <button type="button" data-set="ru" lang="ru">RU</button>
-    </div>
-    <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg>App Store</a>
-  </div>
-</header>
-
-<main class="wrap doc">
-
-<!-- ===================== English ===================== -->
-<article id="en" data-lang="en" lang="en">
-  <h1>Support</h1>
-  <p class="lead">Something not working, or an idea for RMW? Write to us. Answers to common questions are below.</p>
-
-  <div class="band">
-    <svg class="rings" viewBox="0 0 420 420" aria-hidden="true"><circle cx="210" cy="210" r="50" stroke-width="2"/><circle cx="210" cy="210" r="100" stroke-opacity=".7"/><circle cx="210" cy="210" r="150" stroke-opacity=".45"/><circle cx="210" cy="210" r="205" stroke-opacity=".25"/><circle class="dot" cx="210" cy="210" r="9"/></svg>
-    <h2>Write to us</h2>
-    <p>We usually reply within 2 days.</p>
-    <a class="mail" href="mailto:puchkov.web@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>puchkov.web@gmail.com</a>
-  </div>
-
-  <h2 class="sec">Common questions</h2>
-  <div class="faq">
-    <details><summary>A place reminder didn’t fire</summary><p>Allow location “Always” for RMW in iPhone Settings → Privacy → Location Services, and keep notifications on. iPhone watches up to 20 places at a time.</p></details>
-    <details><summary>How do I add a friend?</summary><p>Friends → type your friend’s @nickname → Add. They accept the request in the app.</p></details>
-    <details><summary>A friend’s reminder appeared — will it fire?</summary><p>Only after you tap Accept. Nothing a friend sends is turned on without your consent.</p></details>
-    <details><summary>How do I delete my account?</summary><p>Profile → Delete account. All your data is deleted from our servers immediately.</p></details>
-    <details><summary>Can you read my reminders?</summary><p>No. Places, reminders, chats and shared lists are end-to-end encrypted on your iPhone. The key moves to a new iPhone with an encrypted iCloud or computer backup. Without it we cannot restore them. More in the <a href="../privacy/#en">Privacy Policy</a>.</p></details>
-  </div>
-</article>
-
-<!-- ===================== Русский ===================== -->
-<article id="ru" data-lang="ru" lang="ru">
-  <h1>Поддержка</h1>
-  <p class="lead">Что-то не работает или есть идея для RMW? Напишите нам. Ответы на частые вопросы — ниже.</p>
-
-  <div class="band">
-    <svg class="rings" viewBox="0 0 420 420" aria-hidden="true"><circle cx="210" cy="210" r="50" stroke-width="2"/><circle cx="210" cy="210" r="100" stroke-opacity=".7"/><circle cx="210" cy="210" r="150" stroke-opacity=".45"/><circle cx="210" cy="210" r="205" stroke-opacity=".25"/><circle class="dot" cx="210" cy="210" r="9"/></svg>
-    <h2>Напишите нам</h2>
-    <p>Обычно отвечаем в течение 2 дней.</p>
-    <a class="mail" href="mailto:puchkov.web@gmail.com"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>puchkov.web@gmail.com</a>
-  </div>
-
-  <h2 class="sec">Частые вопросы</h2>
-  <div class="faq">
-    <details><summary>Не сработало напоминание по месту</summary><p>Разрешите RMW геопозицию «Всегда» в Настройках iPhone → Конфиденциальность → Службы геолокации и не выключайте уведомления. iPhone одновременно следит максимум за 20 местами.</p></details>
-    <details><summary>Как добавить друга?</summary><p>Друзья → введите @ник друга → Добавить. Друг принимает заявку в приложении.</p></details>
-    <details><summary>Друг прислал напоминание — оно сработает?</summary><p>Только после того, как вы нажмёте «Принять». Без вашего согласия ничего не включается.</p></details>
-    <details><summary>Как удалить аккаунт?</summary><p>Профиль → Удалить аккаунт. Все ваши данные сразу удаляются с наших серверов.</p></details>
-    <details><summary>Вы можете прочитать мои напоминания?</summary><p>Нет. Места, напоминания, чаты и общие списки шифруются на iPhone. Ключ переезжает на новый iPhone вместе с зашифрованной копией iCloud или компьютера. Без неё восстановить их мы не сможем. Подробнее — в <a href="../privacy/#ru">политике конфиденциальности</a>.</p></details>
-  </div>
-</article>
-
-</main>
-
-<footer>
-  <div class="wrap">
-    <span>© 2026 RMW</span>
-    <span class="spacer"></span>
-    <a href="../" data-t="home">Home</a>
-    <a href="../privacy/" data-t="privacy">Privacy</a>
-  </div>
-</footer>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RMW переехал</title>
+<link rel="canonical" href="https://remind-me-when.github.io/support/">
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="0; url=https://remind-me-when.github.io/support/">
 <script>
+// Старый адрес: переносим на новый с тем же путём и языком (#en/#ru).
 (function () {
-  // Язык: #en/#ru/#lt в адресе → выбор на главной (localStorage 'lang') → язык телефона → английский.
-  var T = {"en": {"title": "RMW — Support", "home": "Home", "privacy": "Privacy"}, "ru": {"title": "RMW — Поддержка", "home": "Главная", "privacy": "Конфиденциальность"}};
-  var langs = Object.keys(T);
-  var arts = document.querySelectorAll('[data-lang]');
-  var btns = document.querySelectorAll('[data-set]');
-  function pick() {
-    var h = location.hash.slice(1);
-    if (langs.indexOf(h) >= 0) return h;
-    var s = null;
-    try { s = localStorage.getItem('lang'); } catch (e) {}
-    if (s && langs.indexOf(s) >= 0) return s;
-    var n = (navigator.language || '').toLowerCase().slice(0, 2);
-    return langs.indexOf(n) >= 0 ? n : 'en';
-  }
-  function apply(l) {
-    for (var i = 0; i < arts.length; i++) arts[i].classList.toggle('on', arts[i].getAttribute('data-lang') === l);
-    for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', btns[j].getAttribute('data-set') === l ? 'true' : 'false');
-    document.documentElement.lang = l;
-    document.title = T[l].title;
-    var els = document.querySelectorAll('[data-t]');
-    for (var k = 0; k < els.length; k++) els[k].textContent = T[l][els[k].getAttribute('data-t')];
-  }
-  for (var b = 0; b < btns.length; b++) btns[b].addEventListener('click', function () {
-    var l = this.getAttribute('data-set');
-    // Главная знает только en/ru — литовский не сохраняем, чтобы её не сломать.
-    if (l !== 'lt') { try { localStorage.setItem('lang', l); } catch (e) {} }
-    try { history.replaceState(null, '', '#' + l); } catch (e) {}
-    apply(l);
-    window.scrollTo(0, 0);
-  });
-  window.addEventListener('hashchange', function () { var h = location.hash.slice(1); if (langs.indexOf(h) >= 0) apply(h); });
-  apply(pick());
+  var p = '/support/';
+  location.replace('https://remind-me-when.github.io' + p + location.search + location.hash);
 })();
 </script>
+<style>body{font:16px -apple-system,system-ui,sans-serif;margin:40px 16px;color:#111A2E;background:#ECEFF5}a{color:#2D47C7}@media (prefers-color-scheme:dark){body{color:#ECEFF5;background:#0F1115}a{color:#8A9DF5}}</style>
+</head>
+<body>
+<p>RMW переехал: <a href="https://remind-me-when.github.io/support/">remind-me-when.github.io/support/</a></p>
+<p lang="en">RMW has moved: <a href="https://remind-me-when.github.io/support/">remind-me-when.github.io/support/</a></p>
 </body>
 </html>
