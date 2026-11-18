@@ -1,16 +1,765 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RMW has moved</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RMW — Remind Me When</title>
+<meta name="description" content="Напоминания для iPhone, которые срабатывают в нужном месте, в нужное время и когда друг рядом.">
+<meta name="theme-color" content="#ECEFF5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F1115" media="(prefers-color-scheme: dark)">
+<meta name="apple-itunes-app" content="app-id=6831954343">
 <link rel="canonical" href="https://remind-me-when.github.io/">
-<meta name="robots" content="noindex">
-<script>location.replace('https://remind-me-when.github.io' + location.pathname + location.search + location.hash);</script>
-<meta http-equiv="refresh" content="0; url=https://remind-me-when.github.io/">
+<meta property="og:url" content="https://remind-me-when.github.io/">
+<meta property="og:title" content="RMW — Remind Me When">
+<meta property="og:description" content="Напомнит там, где это нужно: у магазина, дома, на работе — и когда друг рядом.">
+<meta property="og:image" content="https://remind-me-when.github.io/img/icon.png">
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className = 'js';</script>
+<style>
+:root {
+  --mist: #ECEFF5; --card: #FBFCFE; --cobalt: #2D47C7; --cobalt-deep: #1F3496; --band: #2D47C7;
+  --ink: #111A2E; --ink-2: rgba(17,26,46,.68); --ink-3: rgba(17,26,46,.5);
+  --line: rgba(17,26,46,.1); --signal: #FF6A2B; --tint: rgba(45,71,199,.08);
+  --land: #F5F7FB; --block: #E1E6EF; --park: #D5E3DB; --water: #CAD6F0; --road: #FFFFFF;
+  --topo: rgba(45,71,199,.09); --shadow: 0 30px 60px -30px rgba(17,26,46,.28), 0 2px 6px rgba(17,26,46,.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mist: #0F1115; --card: #191C22; --cobalt: #8A9DF5; --cobalt-deep: #6C84F0; --band: #2F44A8;
+    --ink: #EDEFF3; --ink-2: rgba(237,239,243,.72); --ink-3: rgba(237,239,243,.52);
+    --line: rgba(237,239,243,.09); --signal: #FF7A3D; --tint: rgba(138,157,245,.1);
+    --land: #15181E; --block: #1F232B; --park: #17261F; --water: #16223D; --road: #2A2F39;
+    --topo: rgba(138,157,245,.08); --shadow: 0 30px 60px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(237,239,243,.06);
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--mist); color: var(--ink); font: 17px/1.6 Onest, -apple-system, system-ui, sans-serif; overflow-x: hidden; }
+a { color: var(--cobalt); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 8px; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 700px) { .wrap { padding: 0 32px; } }
+h1, h2, h3 { font-family: Unbounded, Onest, sans-serif; font-weight: 600; letter-spacing: -.02em; margin: 0; }
+svg.ico { width: 24px; height: 24px; stroke: var(--cobalt); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Шапка */
+header { padding: 18px 0; position: relative; z-index: 2; }
+header .wrap { display: flex; align-items: center; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.brand img { width: 38px; height: 38px; border-radius: 10px; }
+.brand b { font: 600 18px/1 Unbounded, sans-serif; letter-spacing: -.02em; }
+.brand small { display: block; font-size: 12px; color: var(--ink-3); margin-top: 3px; }
+.spacer { flex: 1; }
+.langs { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+.langs button { font: 500 14px Onest, sans-serif; color: var(--ink-2); background: none; border: 0; border-radius: 999px; padding: 6px 12px; min-height: 36px; min-width: 44px; cursor: pointer; transition: background-color .2s, color .2s; }
+.langs button[aria-pressed="true"] { background: var(--ink); color: var(--mist); }
+.store { display: inline-flex; align-items: center; gap: 9px; background: var(--ink); color: var(--mist); text-decoration: none; border-radius: 999px; padding: 9px 18px 9px 14px; font-weight: 600; font-size: 15px; min-height: 44px; transition: transform .15s ease; }
+.store:active { transform: scale(.96); }
+.store svg { width: 18px; height: 18px; fill: currentColor; }
+.store.big { padding: 12px 26px 12px 20px; font-size: 19px; line-height: 1.1; min-height: 60px; }
+.store.big svg { width: 26px; height: 26px; }
+.store.big small { display: block; font-size: 11px; font-weight: 500; opacity: .75; }
+
+/* Герой */
+.hero { position: relative; padding: 28px 0 80px; }
+.hero .topo { position: absolute; inset: -120px 0 0 0; width: 100%; height: calc(100% + 120px); z-index: 0; pointer-events: none; }
+.hero .topo path { fill: none; stroke: var(--topo); stroke-width: 1.5; }
+.hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1.08fr; gap: 56px; align-items: center; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 80px); line-height: 1.02; }
+.hero .lead { font-size: clamp(18px, 1.9vw, 21px); color: var(--ink-2); margin: 24px 0 32px; max-width: 34ch; }
+.hero .note { color: var(--ink-3); font-size: 14px; margin: 12px 0 0 4px; }
+.hero h1 .w { display: inline-block; }
+.js .hero h1 .w { opacity: 0; transform: translateY(.4em); animation: rise .8s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(var(--i) * 70ms + 80ms); }
+.js .hero .lead, .js .hero .cta { opacity: 0; animation: fade .8s ease forwards .5s; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+@keyframes fade { to { opacity: 1; } }
+
+/* Колесо дней */
+.widget { background: var(--card); border-radius: 34px; box-shadow: var(--shadow); padding: 22px 22px 22px 14px; display: grid; grid-template-columns: 56% 44%; align-items: center; position: relative; }
+.widget svg.wheel { width: 100%; height: auto; display: block; touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; overflow: visible; }
+.widget svg.wheel:active { cursor: grabbing; }
+.widget svg.wheel:focus:not(:focus-visible) { outline: none; }
+.wheel text { font-family: Unbounded, Onest, sans-serif; font-weight: 600; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.wheel .link { stroke: var(--cobalt); stroke-width: 1.4; transition: opacity .25s ease; }
+.wheel .link-dot { fill: var(--cobalt); transition: opacity .25s ease; }
+.plan { padding-left: 6px; min-height: 196px; display: flex; flex-direction: column; justify-content: center; transition: opacity .22s ease, transform .22s ease; }
+.plan.swap { opacity: 0; transform: translateY(6px); }
+.plan h3 { font-size: clamp(17px, 2vw, 22px); line-height: 1.15; }
+.plan .date { color: var(--ink-3); font-size: 14px; margin: 4px 0 14px; }
+.plan ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.plan li { display: grid; grid-template-columns: 22px 1fr; gap: 0 10px; align-items: start; }
+.plan li svg.ico { width: 20px; height: 20px; margin-top: 2px; }
+.plan li b { display: block; font-size: 15px; line-height: 1.3; font-weight: 600; }
+.plan li span { display: block; font-size: 13px; line-height: 1.35; color: var(--ink-3); }
+.plan .free { color: var(--ink-3); font-size: 15px; }
+.widget .hint { position: absolute; left: 0; right: 0; bottom: -34px; text-align: center; font-size: 13px; color: var(--ink-3); }
+
+/* Секции */
+section { padding: 96px 0; }
+.kicker { font-size: clamp(28px, 4vw, 48px); line-height: 1.08; max-width: 18ch; }
+.sub { font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-2); max-width: 52ch; margin: 18px 0 0; }
+
+.triggers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+.trigger { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 22px 22px 24px; display: flex; flex-direction: column; }
+.trigger .scene { width: 100%; height: auto; aspect-ratio: 2 / 1; display: block; border-radius: 18px; background: var(--land); margin-bottom: 20px; }
+.trigger h3 { font-size: 21px; display: flex; align-items: center; gap: 10px; }
+.trigger p { color: var(--ink-2); font-size: 16px; margin: 10px 0 18px; flex: 1; }
+.example { border-top: 1px solid var(--line); padding-top: 14px; font-size: 15px; }
+.example b { display: block; }
+.example span { color: var(--cobalt); }
+
+/* Сцены карточек — играют, пока карточка на экране */
+.scene * { transform-box: fill-box; transform-origin: center; }
+.scene .stroke { fill: none; stroke: var(--cobalt); stroke-width: 1.6; }
+.scene .soft { fill: var(--tint); stroke: var(--cobalt); stroke-width: 1.4; }
+.scene .faint { fill: none; stroke: var(--cobalt); stroke-opacity: .25; stroke-width: 1.2; }
+.scene .me { fill: var(--ink); stroke: var(--card); stroke-width: 3; }
+.scene .pal { fill: var(--cobalt); stroke: var(--card); stroke-width: 3; }
+.scene .hit { fill: none; stroke: var(--signal); stroke-width: 2.5; opacity: 0; }
+.scene .chip { fill: var(--signal); opacity: 0; }
+.scene .chip-t { fill: #fff; font: 600 13px Onest, sans-serif; text-anchor: middle; dominant-baseline: central; opacity: 0; }
+.scene .road { stroke: var(--road); stroke-width: 10; stroke-linecap: round; fill: none; }
+.scene .hand { stroke: var(--ink); stroke-width: 2.6; stroke-linecap: round; }
+.scene .hand.m { transform-origin: 60px 60px; transform-box: view-box; }
+.scene .hand.h { transform-origin: 60px 60px; transform-box: view-box; transform: rotate(-90deg); }
+.scene .tick { stroke: var(--ink-3); stroke-width: 1.6; stroke-linecap: round; }
+.play .walk { animation: walk 4.8s cubic-bezier(.45,0,.25,1) infinite; }
+.play .hit { animation: hit 4.8s ease-out infinite; }
+.play .hand.m { animation: spin 4.8s cubic-bezier(.5,0,.2,1) infinite; }
+.play .chip, .play .chip-t { animation: chip 4.8s ease infinite; }
+.play .meet-a { animation: meetA 4.8s cubic-bezier(.45,0,.25,1) infinite; }
+.play .meet-b { animation: meetB 4.8s cubic-bezier(.45,0,.25,1) infinite; }
+@keyframes walk { 0% { transform: translateX(0); opacity: 0; } 8% { opacity: 1; } 52%, 88% { transform: translateX(124px); opacity: 1; } 100% { transform: translateX(124px); opacity: 0; } }
+@keyframes hit { 0%, 50% { opacity: 0; transform: scale(1); } 56% { opacity: 1; } 84%, 100% { opacity: 0; transform: scale(1.7); } }
+@keyframes spin { 0% { transform: rotate(0); } 55%, 100% { transform: rotate(1080deg); } }
+@keyframes chip { 0%, 52% { opacity: 0; transform: translateY(6px); } 60%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes meetA { 0% { transform: translateX(0); } 52%, 88% { transform: translateX(58px); } 100% { transform: translateX(58px); opacity: 0; } }
+@keyframes meetB { 0% { transform: translateX(0); } 52%, 88% { transform: translateX(-58px); } 100% { transform: translateX(-58px); opacity: 0; } }
+
+/* Сцена на карте */
+.story { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+.map { position: relative; border-radius: 34px; overflow: hidden; background: var(--land); box-shadow: var(--shadow); aspect-ratio: 1; }
+.map svg { width: 100%; height: 100%; display: block; }
+.map .water { fill: var(--water); } .map .park { fill: var(--park); } .map .block { fill: var(--block); }
+.map .topo path { fill: none; stroke: var(--topo); stroke-width: 1.5; }
+.map .road { stroke: var(--road); fill: none; stroke-linecap: round; }
+.map .ring { fill: none; stroke: var(--cobalt); }
+.map .zone { fill: var(--tint); stroke: var(--cobalt); stroke-width: 2; }
+.map .pin { fill: var(--cobalt); }
+.map .ping { fill: none; stroke: var(--signal); stroke-width: 3; opacity: 0; }
+.map .me { fill: var(--ink); stroke: var(--card); stroke-width: 4; }
+.map .trail { fill: none; stroke: var(--ink); stroke-opacity: .35; stroke-width: 3; stroke-dasharray: 2 9; stroke-linecap: round; }
+.push { position: absolute; left: 6%; right: 6%; top: 5%; display: flex; gap: 12px; align-items: center; background: rgba(251,252,254,.86); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); border-radius: 22px; padding: 12px 14px; box-shadow: 0 16px 36px -16px rgba(17,26,46,.4); transform: translateY(-140%); opacity: 0; transition: transform .55s cubic-bezier(.2,.9,.25,1.15), opacity .3s ease; color: #111A2E; }
+.push.on { transform: none; opacity: 1; }
+.push img { width: 40px; height: 40px; border-radius: 10px; }
+.push .body { flex: 1; min-width: 0; font-size: 14px; line-height: 1.3; }
+.push .t { display: flex; justify-content: space-between; color: rgba(17,26,46,.55); font-size: 12px; margin-bottom: 2px; }
+.push b { display: block; }
+.push p { margin: 0; color: rgba(17,26,46,.75); }
+.steps { list-style: none; margin: 32px 0 0; padding: 0; display: grid; gap: 4px; }
+.steps li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); color: var(--ink-2); transition: color .3s ease; }
+.steps li b { display: block; color: var(--ink); }
+.steps .n { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font: 600 14px Unbounded, sans-serif; color: var(--ink-3); transition: background-color .3s, color .3s, border-color .3s; }
+.steps li.now .n { background: var(--cobalt); border-color: var(--cobalt); color: var(--mist); }
+
+/* Ещё */
+.more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 40px; margin-top: 36px; }
+.more > div { display: grid; grid-template-columns: 24px 1fr; gap: 0 16px; padding: 24px 0; border-top: 1px solid var(--line); }
+.more h4 { margin: 0 0 4px; font-size: 17px; }
+.more p { margin: 0; color: var(--ink-2); font-size: 15px; }
+.js .more > div { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i) * 80ms); }
+.js .more.in > div { opacity: 1; transform: none; }
+
+/* Приватность */
+.private { position: relative; overflow: hidden; background: var(--band); color: #fff; border-radius: 40px; padding: clamp(40px, 7vw, 88px) clamp(24px, 6vw, 80px); }
+.private h2 { font-size: clamp(28px, 4vw, 50px); line-height: 1.08; max-width: 14ch; position: relative; }
+.private p { color: rgba(255,255,255,.88); max-width: 46ch; margin: 22px 0 0; font-size: clamp(17px, 1.6vw, 19px); position: relative; }
+.private a { color: #fff; position: relative; display: inline-block; margin-top: 22px; font-weight: 600; }
+.private .radar { position: absolute; right: -180px; top: 50%; width: 620px; height: 620px; margin-top: -310px; opacity: .5; }
+.private .radar circle { fill: none; stroke: #fff; transform-box: fill-box; transform-origin: center; }
+.private .radar .wave { stroke-opacity: 0; }
+.private.play .radar .wave { animation: wave 5.4s cubic-bezier(.2,.6,.3,1) infinite; animation-delay: calc(var(--i) * 1.8s); }
+.private .radar .dot { fill: var(--signal); stroke: none; }
+@keyframes wave { 0% { transform: scale(.15); stroke-opacity: .9; } 100% { transform: scale(1); stroke-opacity: 0; } }
+
+/* Финал */
+.final { text-align: center; padding: 120px 0 110px; }
+.final img { width: 104px; height: 104px; border-radius: 24px; box-shadow: var(--shadow); }
+.final h2 { font-size: clamp(30px, 5vw, 60px); line-height: 1.05; margin: 28px auto 32px; max-width: 14ch; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 calc(28px + env(safe-area-inset-bottom)); color: var(--ink-3); font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; }
+footer a { text-decoration: none; color: var(--ink-2); padding: 6px 0; }
+
+@media (max-width: 960px) {
+  .hero .wrap, .story { grid-template-columns: 1fr; gap: 40px; }
+  .hero .lead { max-width: 40ch; }
+  .triggers { grid-template-columns: 1fr; max-width: 560px; }
+  .more { grid-template-columns: 1fr 1fr; }
+  .map { max-width: 560px; }
+}
+@media (max-width: 600px) {
+  header .store, .brand small { display: none; }
+  .hero { padding: 12px 0 72px; }
+  .widget { border-radius: 28px; padding: 16px 14px 16px 6px; grid-template-columns: 55% 45%; }
+  .plan { min-height: 176px; }
+  .plan li b { font-size: 14px; }
+  .plan li span { font-size: 12px; }
+  section { padding: 72px 0; }
+  .more { grid-template-columns: 1fr; }
+  .private { border-radius: 30px; }
+  .private .radar { width: 420px; height: 420px; margin-top: -210px; right: -230px; }
+  footer .spacer { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .hero h1 .w, .js .hero .lead, .js .hero .cta, .js .more > div { animation: none; opacity: 1; transform: none; transition: none; }
+  .play .walk, .play .hit, .play .hand.m, .play .chip, .play .chip-t, .play .meet-a, .play .meet-b, .private.play .radar .wave { animation: none; }
+  .scene .walk { transform: translateX(124px); } .scene .meet-a { transform: translateX(58px); } .scene .meet-b { transform: translateX(-58px); }
+  .scene .chip, .scene .chip-t { opacity: 1; }
+  .push { transition: none; }
+}
+</style>
 </head>
-<body style="font-family:-apple-system,system-ui,sans-serif;padding:24px">
-<p>RMW has moved to <a href="https://remind-me-when.github.io/">remind-me-when.github.io</a>.</p>
-<p lang="ru">Сайт RMW переехал: <a href="https://remind-me-when.github.io/">remind-me-when.github.io</a>.</p>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="./"><img src="img/apple-touch-icon.png" alt="" width="38" height="38"><span><b>RMW</b><small>Remind Me When</small></span></a>
+    <span class="spacer"></span>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-set="en" lang="en">EN</button>
+      <button type="button" data-set="ru" lang="ru">RU</button>
+    </div>
+    <a class="store" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span data-i="get">Скачать</span></a>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <svg class="topo" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-40 160 C220 90 380 230 620 170 S1010 40 1480 140"/>
+    <path d="M-40 230 C230 160 400 300 640 240 S1020 110 1480 210"/>
+    <path d="M-40 640 C180 600 330 700 560 690 S900 560 1180 620 1400 700 1480 680"/>
+    <path d="M-40 710 C190 670 350 770 580 760 S920 630 1200 690 1410 770 1480 750"/>
+    <path d="M-40 780 C200 740 370 840 600 830 S940 700 1220 760 1420 840 1480 820"/>
+    <path d="M1060 420 C1120 330 1290 320 1340 410 S1260 560 1160 540 1000 510 1060 420Z"/>
+    <path d="M1100 425 C1140 365 1260 360 1295 420 S1240 515 1170 502 1060 485 1100 425Z"/>
+  </svg>
+  <div class="wrap">
+    <div>
+      <h1 data-i="h1" data-split>Напомнит, когда вы&nbsp;там</h1>
+      <p class="lead" data-i="lead">Купить хлеб — у магазина. Выключить утюг — на выходе из дома. Отдать книгу — когда друг рядом. RMW срабатывает в нужном месте, а не в случайное время.</p>
+      <div class="cta">
+        <a class="store big" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small data-i="dl">Загрузите в</small>App Store</span></a>
+        <p class="note" data-i="note">Бесплатно, для iPhone</p>
+      </div>
+    </div>
+    <div class="widget">
+      <svg class="wheel" id="wheel" tabindex="0" role="img" aria-label="Колесо дней из приложения: покрутите, чтобы посмотреть план на другой день" data-i-aria="wheelAria"></svg>
+      <div class="plan" id="plan" aria-live="polite"></div>
+      <div class="hint" data-i="hint">Покрутите колесо</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="kicker" data-i="h2a">Напоминание само знает, когда сработать</h2>
+    <p class="sub" data-i="sub2a">Выберите, что должно случиться: вы пришли в место, наступило время или рядом оказался друг. Дальше RMW следит сам, даже когда приложение закрыто.</p>
+    <div class="triggers">
+      <div class="trigger">
+        <svg class="scene" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="road" d="M0 84 H240"/>
+          <circle class="faint" cx="168" cy="60" r="50"/>
+          <circle class="soft" cx="168" cy="60" r="32"/>
+          <circle class="hit" cx="168" cy="60" r="32"/>
+          <circle class="pal" cx="168" cy="60" r="5" style="stroke:none"/>
+          <circle class="me walk" cx="34" cy="70" r="8"/>
+        </svg>
+        <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="9.5"/></svg><span data-i="tPlace">Место</span></h3>
+        <p data-i="tPlaceD">Дом, работа, магазин, спортзал. Напомнит, когда придёте или когда уйдёте.</p>
+        <div class="example"><b data-i="tPlaceE">Полить цветы</b><span data-i="tPlaceW">когда приду домой</span></div>
+      </div>
+      <div class="trigger">
+        <svg class="scene" viewBox="0 0 240 120" aria-hidden="true">
+          <circle class="soft" cx="60" cy="60" r="40"/>
+          <path class="tick" d="M60 26v6M60 88v6M26 60h6M88 60h6"/>
+          <line class="hand h" x1="60" y1="60" x2="60" y2="38"/>
+          <line class="hand m" x1="60" y1="60" x2="60" y2="30"/>
+          <circle cx="60" cy="60" r="3.5" style="fill:var(--ink)"/>
+          <rect class="chip" x="128" y="44" width="84" height="32" rx="16"/>
+          <text class="chip-t" x="170" y="60">9:00</text>
+        </svg>
+        <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span data-i="tTime">Время</span></h3>
+        <p data-i="tTimeD">Разово или по расписанию: каждый день, по будням, раз в месяц. Плюс дни рождения и важные даты.</p>
+        <div class="example"><b data-i="tTimeE">Выпить таблетку</b><span data-i="tTimeW">каждый день в 9:00</span></div>
+      </div>
+      <div class="trigger">
+        <svg class="scene" viewBox="0 0 240 120" aria-hidden="true">
+          <path class="road" d="M0 60 H240"/>
+          <circle class="hit" cx="120" cy="60" r="30"/>
+          <circle class="me meet-a" cx="44" cy="60" r="8"/>
+          <circle class="pal meet-b" cx="196" cy="60" r="8"/>
+        </svg>
+        <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.5" cy="9" r="3"/><circle cx="16.5" cy="9" r="3"/><path d="M3 20c0-3 2.5-5.5 5.5-5.5S14 17 14 20M14.5 16c.7-1 1.9-1.5 3-1.5 2.4 0 4.5 2.2 4.5 5.5"/></svg><span data-i="tFriend">Друг рядом</span></h3>
+        <p data-i="tFriendD">Напомнит, когда друг окажется поблизости. Только с теми, кто сам согласился делиться местом.</p>
+        <div class="example"><b data-i="tFriendE">Вернуть Лёше книгу</b><span data-i="tFriendW">когда Лёша рядом</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap story">
+    <div class="map" role="img" aria-label="Карта: человек подходит к магазину, и на экране появляется напоминание" data-i-aria="mapAria">
+      <svg viewBox="0 0 560 560" aria-hidden="true">
+        <path class="water" d="M0 400 C90 380 150 430 230 470 C300 505 330 560 330 560 L0 560 Z"/>
+        <rect class="park" x="408" y="36" width="120" height="104" rx="18"/>
+        <rect class="block" x="36" y="40" width="130" height="104" rx="14"/>
+        <rect class="block" x="226" y="40" width="130" height="104" rx="14"/>
+        <rect class="block" x="36" y="206" width="130" height="150" rx="14"/>
+        <rect class="block" x="408" y="206" width="120" height="100" rx="14"/>
+        <rect class="block" x="408" y="340" width="120" height="180" rx="14"/>
+        <g class="topo">
+          <path d="M-20 520 C60 500 120 520 180 548"/><path d="M-20 545 C40 530 90 545 130 570"/>
+          <path d="M380 590 C400 520 470 480 590 470"/><path d="M420 590 C440 540 500 510 590 505"/><path d="M460 590 C475 560 520 540 590 538"/>
+        </g>
+        <path class="road" stroke-width="22" d="M0 175 H560"/>
+        <path class="road" stroke-width="22" d="M380 0 V560"/>
+        <path class="road" stroke-width="14" d="M196 175 V380 C196 420 170 440 120 470 L40 540"/>
+        <path class="trail" d="M60 522 L120 470 C170 440 196 420 196 380 L196 330 C200 310 230 300 258 300"/>
+        <circle class="ring" cx="290" cy="300" r="150" stroke-opacity=".12" stroke-width="1.5"/>
+        <circle class="ring" cx="290" cy="300" r="112" stroke-opacity=".22" stroke-width="1.5"/>
+        <circle class="zone" cx="290" cy="300" r="74"/>
+        <circle class="pin" cx="290" cy="300" r="9"/>
+        <circle class="ping" cx="290" cy="300" r="74">
+          <animate attributeName="r" from="74" to="190" dur="1.4s" begin="me.end" fill="freeze"/>
+          <animate attributeName="opacity" values="0;.8;0" dur="1.4s" begin="me.end" fill="freeze"/>
+        </circle>
+        <circle class="me" r="11" cx="0" cy="0" id="dot" transform="translate(60 522)">
+          <animateMotion id="me" dur="2.8s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".45 0 .25 1" path="M60 522 L120 470 C170 440 196 420 196 380 L196 330 C200 310 230 300 258 300"/>
+        </circle>
+      </svg>
+      <div class="push" id="push" aria-hidden="true">
+        <img src="img/apple-touch-icon.png" alt="">
+        <div class="body">
+          <div class="t"><span>RMW</span><span data-i="now">сейчас</span></div>
+          <b data-i="pushT">Вы у магазина</b>
+          <p data-i="pushB">Купить хлеб и молоко</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="kicker" data-i="h2s">Телефон в кармане, напоминание вовремя</h2>
+      <ol class="steps" id="steps">
+        <li><span class="n">1</span><span><b data-i="s1">Отметьте место</b><span data-i="s1d">Магазин у дома, работа, спортзал. Круг на карте и есть зона.</span></span></li>
+        <li><span class="n">2</span><span><b data-i="s2">Живите как обычно</b><span data-i="s2d">iPhone сам замечает, что вы вошли в зону. Приложение может быть закрыто.</span></span></li>
+        <li><span class="n">3</span><span><b data-i="s3">Получите напоминание</b><span data-i="s3d">Ровно там, где оно нужно. Не раньше и не в случайное время.</span></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="kicker" data-i="h2b">И ещё то, что не хочется держать в голове</h2>
+    <div class="more" id="more">
+      <div style="--i:0"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 6l1.2 1.2L7.5 5M4 12l1.2 1.2 2.3-2.2M4 18l1.2 1.2 2.3-2.2"/></svg><div><h4 data-i="m1">Общие списки</h4><p data-i="m1d">Покупки на двоих: вычеркнул один — видят все.</p></div></div>
+      <div style="--i:1"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><path d="M10 14V6.5h2.6a2.2 2.2 0 0 1 0 4.4H10"/></svg><div><h4 data-i="m2">Где я оставил</h4><p data-i="m2d">Запомнит, где машина или велосипед, одним нажатием.</p></div></div>
+      <div style="--i:2"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg><div><h4 data-i="m3">Чаты и звонки</h4><p data-i="m3d">Переписка с друзьями рядом с общими делами.</p></div></div>
+      <div style="--i:3"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><div><h4 data-i="m4">Даты</h4><p data-i="m4d">Дни рождения и годовщины с напоминанием заранее.</p></div></div>
+      <div style="--i:4"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5"/><rect x="3" y="13" width="18" height="8" rx="2.5"/></svg><div><h4 data-i="m5">Виджеты</h4><p data-i="m5d">Ближайшие дела на экране «Домой», в светлой и тёмной теме.</p></div></div>
+      <div style="--i:5"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg><div><h4 data-i="m6">Идеи</h4><p data-i="m6d">Готовые напоминания: ключи на выходе, бельё в машинке.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="private" id="private">
+    <svg class="radar" viewBox="0 0 620 620" aria-hidden="true">
+      <circle cx="310" cy="310" r="70" stroke-opacity=".7" stroke-width="2"/>
+      <circle cx="310" cy="310" r="150" stroke-opacity=".4"/>
+      <circle cx="310" cy="310" r="230" stroke-opacity=".22"/>
+      <circle class="wave" style="--i:0" cx="310" cy="310" r="300" stroke-width="2"/>
+      <circle class="wave" style="--i:1" cx="310" cy="310" r="300" stroke-width="2"/>
+      <circle class="wave" style="--i:2" cx="310" cy="310" r="300" stroke-width="2"/>
+      <circle class="dot" cx="310" cy="310" r="11"/>
+    </svg>
+    <h2 data-i="h2c">Ваши места знает только ваш iPhone</h2>
+    <p data-i="pc">Места, напоминания и списки шифруются на телефоне до отправки. На сервере они лежат в виде, который мы сами прочитать не можем. Рекламы и продажи данных нет.</p>
+    <a href="privacy/" data-i="pLink">Как устроена приватность</a>
+  </div>
+</div>
+
+<div class="final">
+  <div class="wrap">
+    <img src="img/icon.png" alt="" width="104" height="104">
+    <h2 data-i="h2d">Хватит держать всё в голове</h2>
+    <a class="store big" href="https://apps.apple.com/app/id6831954343"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.2.1 2.3-.6 3.1-1.5z"/></svg><span><small data-i="dl">Загрузите в</small>App Store</span></a>
+  </div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RMW</span>
+    <span class="spacer"></span>
+    <a href="support/" data-i="fSupport">Поддержка</a>
+    <a href="privacy/" data-i="fPrivacy">Конфиденциальность</a>
+    <a href="mailto:puchkov.web@gmail.com">puchkov.web@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  // ---------- Тексты ----------
+  var en = {
+    get: 'Get', dl: 'Download on the', note: 'Free, for iPhone', now: 'now',
+    h1: 'Reminds you when you’re&nbsp;there',
+    lead: 'Buy bread at the store. Unplug the iron on your way out. Return a book when your friend is nearby. RMW goes off in the right place, not at a random time.',
+    wheelAria: 'Day wheel from the app: spin it to see the plan for another day', hint: 'Spin the wheel',
+    mapAria: 'Map: a person walks up to a store and a reminder appears on screen',
+    pushT: 'You’re at the store', pushB: 'Buy bread and milk',
+    h2a: 'Each reminder knows when to go off',
+    sub2a: 'Pick what should happen: you arrive somewhere, the time comes, or a friend is close by. RMW keeps watch even when the app is closed.',
+    tPlace: 'Place', tPlaceD: 'Home, work, the store, the gym. Get reminded when you arrive or when you leave.', tPlaceE: 'Water the plants', tPlaceW: 'when I get home',
+    tTime: 'Time', tTimeD: 'Once or on a schedule: every day, on weekdays, once a month. Plus birthdays and important dates.', tTimeE: 'Take my pill', tTimeW: 'every day at 9:00',
+    tFriend: 'Friend nearby', tFriendD: 'Get reminded when a friend is close. Only with people who chose to share their location.', tFriendE: 'Give Alex his book back', tFriendW: 'when Alex is nearby',
+    h2s: 'Phone in your pocket, reminder on time',
+    s1: 'Mark a place', s1d: 'The store near home, work, the gym. The circle on the map is the zone.',
+    s2: 'Go about your day', s2d: 'Your iPhone notices when you enter the zone. The app can be closed.',
+    s3: 'Get the reminder', s3d: 'Right where you need it. Not too early and not at a random time.',
+    h2b: 'And more things you don’t want to keep in your head',
+    m1: 'Shared lists', m1d: 'Groceries for two: one person checks it off, everyone sees it.',
+    m2: 'Where I parked', m2d: 'Saves where you left the car or bike with one tap.',
+    m3: 'Chats and calls', m3d: 'Talk to friends right next to the things you share.',
+    m4: 'Dates', m4d: 'Birthdays and anniversaries with a heads-up in advance.',
+    m5: 'Widgets', m5d: 'Upcoming tasks on your Home Screen, in light and dark.',
+    m6: 'Ideas', m6d: 'Ready-made reminders: keys by the door, laundry in the machine.',
+    h2c: 'Only your iPhone knows your places',
+    pc: 'Places, reminders and lists are encrypted on your phone before they leave it. On our server they sit in a form we can’t read ourselves. No ads, no selling data.',
+    pLink: 'How privacy works',
+    h2d: 'Stop keeping it all in your head',
+    fSupport: 'Support', fPrivacy: 'Privacy'
+  };
+  // Примеры дел для колеса: [вид, что, когда]. Вид: p — место, t — время, f — друг, d — дата.
+  var DAYS = {
+    ru: [
+      [['p', 'Купить хлеб и молоко', 'у магазина'], ['t', 'Выпить таблетку', 'в 9:00'], ['f', 'Вернуть Лёше книгу', 'когда Лёша рядом']],
+      [['t', 'Позвонить маме', 'в 19:30'], ['p', 'Полить цветы', 'когда приду домой']],
+      [['p', 'Забрать посылку', 'у пункта выдачи']],
+      [],
+      [['t', 'Тренировка', 'в 18:00'], ['p', 'Взять форму', 'на выходе из дома'], ['f', 'Обсудить отпуск с Аней', 'когда Аня рядом']],
+      [['d', 'День рождения Димы', 'весь день'], ['p', 'Купить подарок', 'у торгового центра']],
+      [['p', 'Выключить утюг', 'на выходе из дома'], ['t', 'Оплатить интернет', 'в 12:00']]
+    ],
+    en: [
+      [['p', 'Buy bread and milk', 'at the store'], ['t', 'Take my pill', 'at 9:00'], ['f', 'Give Alex his book back', 'when Alex is nearby']],
+      [['t', 'Call mum', 'at 19:30'], ['p', 'Water the plants', 'when I get home']],
+      [['p', 'Pick up the parcel', 'at the pickup point']],
+      [],
+      [['t', 'Workout', 'at 18:00'], ['p', 'Take my gym bag', 'when I leave home'], ['f', 'Plan the trip with Anna', 'when Anna is nearby']],
+      [['d', 'Dan’s birthday', 'all day'], ['p', 'Buy a present', 'at the mall']],
+      [['p', 'Unplug the iron', 'when I leave home'], ['t', 'Pay for internet', 'at 12:00']]
+    ]
+  };
+  var REL = { ru: { '-1': 'Вчера', '0': 'Сегодня', '1': 'Завтра', free: 'Свободный день' }, en: { '-1': 'Yesterday', '0': 'Today', '1': 'Tomorrow', free: 'Nothing planned' } };
+  var ICON = {
+    p: '<circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="9.5"/>',
+    t: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+    f: '<circle cx="8.5" cy="9" r="3"/><circle cx="16.5" cy="9" r="3"/><path d="M3 20c0-3 2.5-5.5 5.5-5.5S14 17 14 20M14.5 16c.7-1 1.9-1.5 3-1.5 2.4 0 4.5 2.2 4.5 5.5"/>',
+    d: '<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'
+  };
+  var DOT = { p: '#FF6A2B', t: '#2BA58C', f: '#8A5CF6', d: '#E0A100' };
+
+  // Слова заголовка по одному: каждое въезжает со своей задержкой.
+  function split(el) {
+    var parts = el.innerHTML.split(/ (?![^<]*>)/);
+    el.innerHTML = parts.map(function (w, i) { return '<span class="w" style="--i:' + i + '">' + w + '</span>'; }).join(' ');
+  }
+
+  var ru = {};
+  document.querySelectorAll('[data-i]').forEach(function (el) { ru[el.dataset.i] = el.innerHTML; });
+  document.querySelectorAll('[data-i-aria]').forEach(function (el) { ru[el.dataset.iAria] = el.getAttribute('aria-label'); });
+  var ruMeta = document.querySelector('meta[name="description"]').content, ruOg = document.querySelector('meta[property="og:description"]').content;
+  var lang = 'ru';
+  function apply(l) {
+    lang = l;
+    var d = l === 'en' ? en : ru;
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-i]').forEach(function (el) { if (d[el.dataset.i]) el.innerHTML = d[el.dataset.i]; });
+    document.querySelectorAll('[data-i-aria]').forEach(function (el) { el.setAttribute('aria-label', d[el.dataset.iAria]); });
+    document.querySelectorAll('[data-split]').forEach(split);
+    document.querySelector('meta[name="description"]').setAttribute('content', l === 'en' ? 'Reminders for iPhone that go off in the right place, at the right time, and when a friend is nearby.' : ruMeta);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', l === 'en' ? 'Reminds you where it matters: at the store, at home, at work, and when a friend is nearby.' : ruOg);
+    document.querySelectorAll('[data-set]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.set === l ? 'true' : 'false'); });
+    if (wheel) wheel.relang();
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  var hash = location.hash.slice(1);
+  var first = hash === 'en' || hash === 'ru' ? hash : saved === 'en' || saved === 'ru' ? saved : ((navigator.language || 'ru').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en');
+  document.querySelectorAll('[data-set]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var l = b.dataset.set;
+      if (l === lang) return;
+      try { localStorage.setItem('lang', l); } catch (e) {}
+      document.querySelector('.hero h1').style.animation = 'none';
+      apply(l);
+    });
+  });
+
+  // Запускать анимацию, только пока блок на экране.
+  function whenVisible(el, on, off, threshold) {
+    if (!('IntersectionObserver' in window)) { on(); return; }
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) on(); else if (off) off(); }); }, { threshold: threshold || 0.3 }).observe(el);
+  }
+
+  // ---------- Колесо дней (та же геометрия, что в приложении: src/home/wheelGeometry.ts) ----------
+  var wheel = (function () {
+    var svg = document.getElementById('wheel'), plan = document.getElementById('plan');
+    var NS = 'http://www.w3.org/2000/svg';
+    var N = 14, STEP = 2 * Math.PI / N, TILT = 50 * Math.PI / 180, COS = Math.cos(TILT), SIN = Math.sin(TILT);
+    var R = 100, BAND = 40, FOCAL = R * 4.2, THICK = 5, POP = 7, GAP = 0.3, HALF = STEP / 2 * (1 - GAP);
+    var today = new Date(); today.setHours(12, 0, 0, 0);
+    var C = {};
+    function colors() {
+      C = dark.matches
+        ? { face: '#232731', side: '#090B0F', accent: '#6C84F0', accentSide: '#2F44A8', ink: '#EDEFF3', onAccent: '#FFFFFF', edge: 'rgba(237,239,243,.16)' }
+        : { face: '#FFFFFF', side: '#C3CBDD', accent: '#2D47C7', accentSide: '#1A2C86', ink: '#111A2E', onAccent: '#FFFFFF', edge: 'rgba(17,26,46,.16)' };
+    }
+    colors();
+    function hex(c) { if (c.charAt(0) !== '#') return c.match(/\d+/g).map(Number); var n = parseInt(c.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+    function mix(a, b, t) { var x = hex(a), y = hex(b); return 'rgb(' + x.map(function (v, i) { return Math.round(v + (y[i] - v) * t); }).join(',') + ')'; }
+    function items(off) { var list = DAYS[lang]; return list[((off % 7) + 7) % 7]; }
+    function lift(u) { var a = Math.abs(u); return a >= 1 ? 0 : 0.5 + 0.5 * Math.cos(Math.PI * a); }
+    function shade(u) {
+      var a = Math.abs(u), h = N / 2;
+      if (a >= h - 0.5) return 0;
+      var depth = Math.sin(u * STEP);
+      var base = 0.5 + 0.5 * (depth + 1) / 2;
+      var edge = Math.min(1, (h - 0.5 - a) / 1.2);
+      return base * edge;
+    }
+    function pt(t, r) {
+      var z = r * Math.sin(t) * SIN, s = FOCAL / (FOCAL - z);
+      return { x: r * Math.cos(t) * s, y: r * Math.sin(t) * COS * s, s: s };
+    }
+    // Границы кольца → viewBox; справа запас под линию к плану.
+    var minX = 1e9, maxX = -1e9, minY = 1e9, maxY = -1e9;
+    for (var a = 0; a < 2 * Math.PI; a += 0.05) {
+      [R - BAND / 2, R + BAND / 2 + POP].forEach(function (r) {
+        var p = pt(a, r);
+        minX = Math.min(minX, p.x); maxX = Math.max(maxX, p.x); minY = Math.min(minY, p.y); maxY = Math.max(maxY, p.y + THICK * p.s);
+      });
+    }
+    var EXTRA = 26;
+    svg.setAttribute('viewBox', (minX - 6).toFixed(1) + ' ' + (minY - 6).toFixed(1) + ' ' + (maxX - minX + 12 + EXTRA).toFixed(1) + ' ' + (maxY - minY + 12).toFixed(1));
+    var RIGHT = maxX + 6 + EXTRA;
+
+    var layer = document.createElementNS(NS, 'g');
+    svg.appendChild(layer);
+    var link = document.createElementNS(NS, 'path'); link.setAttribute('class', 'link'); link.setAttribute('fill', 'none');
+    var linkDot = document.createElementNS(NS, 'circle'); linkDot.setAttribute('class', 'link-dot'); linkDot.setAttribute('r', '3.5');
+    svg.appendChild(link); svg.appendChild(linkDot);
+    var pool = [];
+    for (var i = 0; i < N; i++) {
+      var g = document.createElementNS(NS, 'g');
+      var body = document.createElementNS(NS, 'path'), face = document.createElementNS(NS, 'path'), lab = document.createElementNS(NS, 'g');
+      var num = document.createElementNS(NS, 'text'); num.setAttribute('font-size', '15');
+      var dots = [];
+      for (var k = 0; k < 3; k++) { var c = document.createElementNS(NS, 'circle'); c.setAttribute('r', '2.6'); lab.appendChild(c); dots.push(c); }
+      lab.appendChild(num);
+      g.appendChild(body); g.appendChild(face); g.appendChild(lab);
+      layer.appendChild(g);
+      pool.push({ g: g, body: body, face: face, lab: lab, num: num, dots: dots });
+    }
+
+    function outline(u, dy) {
+      var t0 = u * STEP, lf = lift(u) * POP, ro = R + BAND / 2 + lf, ri = R - BAND / 2 + lf, pts = [], j, t;
+      for (j = 0; j <= 6; j++) { t = t0 - HALF + (2 * HALF * j) / 6; var p = pt(t, ro); pts.push(p.x.toFixed(2) + ' ' + (p.y + dy * p.s).toFixed(2)); }
+      for (j = 6; j >= 0; j--) { t = t0 - HALF + (2 * HALF * j) / 6; var q = pt(t, ri); pts.push(q.x.toFixed(2) + ' ' + (q.y + dy * q.s).toFixed(2)); }
+      return 'M' + pts.join(' L') + ' Z';
+    }
+
+    var pos = 0, vel = 0, target = 0, shown = null, dragging = false;
+    function draw() {
+      var base = Math.round(pos), order = [];
+      for (var i = 0; i < N; i++) {
+        var day = base - 6 + i, u = day - pos, tile = pool[i];
+        var op = shade(u);
+        if (op <= 0.01) { tile.g.style.display = 'none'; continue; }
+        tile.g.style.display = '';
+        var list = items(day), n = list.length, act = lift(u);
+        var fill = n ? Math.min(1, 0.22 + 0.13 * (n - 1)) : 0;
+        var faceCol = mix(n ? mix(C.face, C.accent, fill) : C.face, C.accent, act);
+        tile.face.setAttribute('d', outline(u, 0));
+        tile.face.setAttribute('fill', faceCol);
+        tile.face.setAttribute('stroke', n || act > 0.5 ? 'none' : C.edge);
+        tile.face.setAttribute('stroke-width', '1');
+        tile.body.setAttribute('d', outline(u, THICK));
+        tile.body.setAttribute('fill', act > 0.5 ? C.accentSide : C.side);
+        tile.g.setAttribute('opacity', op.toFixed(3));
+        // Число и точки лежат в плоскости кольца: матрица из радиального и касательного направлений.
+        var t = u * STEP, r = R + act * POP, c = pt(t, r), s = c.s;
+        var m = [Math.cos(t) * s, Math.sin(t) * COS * s, -Math.sin(t) * s, Math.cos(t) * COS * s, c.x, c.y];
+        tile.lab.setAttribute('transform', 'matrix(' + m.map(function (v) { return v.toFixed(4); }).join(' ') + ')');
+        var date = new Date(today.getTime() + day * 864e5);
+        tile.num.textContent = date.getDate();
+        tile.num.setAttribute('x', '-4');
+        tile.num.setAttribute('fill', act > 0.5 ? C.onAccent : (fill > 0.55 ? C.onAccent : C.ink));
+        tile.dots.forEach(function (d, k) {
+          if (k < n) { d.style.display = ''; d.setAttribute('cx', '13'); d.setAttribute('cy', String(n === 1 ? 0 : -7 + (14 * k) / (n - 1))); d.setAttribute('fill', DOT[list[k][0]]); }
+          else d.style.display = 'none';
+        });
+        order.push({ g: tile.g, z: Math.sin(t) });
+      }
+      order.sort(function (a, b) { return a.z - b.z; }).forEach(function (o) { layer.appendChild(o.g); });
+      // Линия от активной плитки к плану.
+      var settled = !dragging && Math.abs(pos - Math.round(pos)) < 0.04 && Math.abs(vel) < 0.3;
+      var au = Math.round(pos) - pos, ap = pt(au * STEP, R + BAND / 2 + POP * lift(au));
+      link.setAttribute('d', 'M' + (ap.x + 3).toFixed(1) + ' ' + ap.y.toFixed(1) + ' L' + (RIGHT - 4).toFixed(1) + ' ' + ap.y.toFixed(1));
+      linkDot.setAttribute('cx', (RIGHT - 4).toFixed(1)); linkDot.setAttribute('cy', ap.y.toFixed(1));
+      link.style.opacity = linkDot.style.opacity = settled ? '1' : '0';
+      if (settled) showPlan(Math.round(pos));
+    }
+
+    function label(off) {
+      var d = new Date(today.getTime() + off * 864e5), r = REL[lang][String(off)];
+      var wd = new Intl.DateTimeFormat(lang, { weekday: 'long' }).format(d);
+      return { title: r || wd.charAt(0).toUpperCase() + wd.slice(1), date: new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long' }).format(d) + (r ? ', ' + wd : '') };
+    }
+    var swapTimer = 0;
+    function showPlan(off, force) {
+      if (off === shown && !force) return;
+      var instant = shown === null || reduce;
+      shown = off;
+      var render = function () {
+        var l = label(off), list = items(off);
+        plan.innerHTML = '<h3>' + l.title + '</h3><p class="date">' + l.date + '</p>' + (list.length
+          ? '<ul>' + list.map(function (it) { return '<li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="stroke:' + DOT[it[0]] + '">' + ICON[it[0]] + '</svg><div><b>' + it[1] + '</b><span>' + it[2] + '</span></div></li>'; }).join('') + '</ul>'
+          : '<p class="free">' + REL[lang].free + '</p>');
+        plan.classList.remove('swap');
+      };
+      clearTimeout(swapTimer);
+      if (instant) { render(); return; }
+      plan.classList.add('swap');
+      swapTimer = setTimeout(render, 200);
+    }
+
+    // Движение: пружина с лёгким проскоком, как доводка в приложении.
+    var raf = 0, last = 0, visible = true, auto = 0, pauseUntil = 0;
+    function frame(ts) {
+      raf = 0;
+      var dt = Math.min(0.033, (ts - (last || ts)) / 1000); last = ts;
+      if (!dragging) {
+        var k = 46, c = 9.6;
+        vel += (k * (target - pos) - c * vel) * dt;
+        pos += vel * dt;
+        if (Math.abs(target - pos) < 0.0015 && Math.abs(vel) < 0.01) { pos = target; vel = 0; }
+      }
+      draw();
+      if (dragging || pos !== target) kick();
+    }
+    function kick() { if (!raf && visible) { raf = requestAnimationFrame(frame); } }
+    function go(t) { target = t; last = 0; kick(); }
+
+    // Сам листает дни: вперёд на 5, потом раскрутка назад к сегодня.
+    function tick() {
+      if (reduce || !visible || dragging || Date.now() < pauseUntil) return;
+      go(target >= 5 ? 0 : target + 1);
+    }
+
+    // Пальцем: угол вокруг центра кольца → дни (1:1), при отпускании — инерция и доводка на день.
+    var startA = 0, startPos = 0, lastA = 0, lastT = 0, spd = 0;
+    function angleOf(e) {
+      var b = svg.getBoundingClientRect(), vb = svg.viewBox.baseVal, sc = vb.width / b.width;
+      var x = (e.clientX - b.left) * sc + vb.x, y = ((e.clientY - b.top) * sc + vb.y) / COS;
+      return Math.atan2(y, x);
+    }
+    function unwrap(a, ref) { while (a - ref > Math.PI) a -= 2 * Math.PI; while (a - ref < -Math.PI) a += 2 * Math.PI; return a; }
+    svg.addEventListener('pointerdown', function (e) {
+      dragging = true; svg.setPointerCapture(e.pointerId);
+      startA = lastA = angleOf(e); startPos = pos; lastT = performance.now(); spd = 0; vel = 0;
+      pauseUntil = Date.now() + 8000; kick();
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var a = unwrap(angleOf(e), lastA), now = performance.now();
+      var dtm = Math.max(1, now - lastT);
+      spd = 0.6 * spd + 0.4 * (-(a - lastA) / STEP) / (dtm / 1000);
+      lastA = a; lastT = now;
+      pos = startPos - (a - startA) / STEP;
+      kick();
+    });
+    function release() {
+      if (!dragging) return;
+      dragging = false;
+      pauseUntil = Date.now() + 8000;
+      var fly = Math.max(-8, Math.min(8, spd * 0.28));
+      vel = Math.max(-25, Math.min(25, spd));
+      go(Math.round(pos + fly));
+    }
+    svg.addEventListener('pointerup', release);
+    svg.addEventListener('pointercancel', release);
+    svg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { pauseUntil = Date.now() + 8000; go(target + 1); e.preventDefault(); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { pauseUntil = Date.now() + 8000; go(target - 1); e.preventDefault(); }
+      if (e.key === 'Home') { go(0); e.preventDefault(); }
+    });
+
+    // Вступление: колесо раскручивается, тормозит, чуть проскакивает сегодня и возвращается.
+    if (reduce) { pos = target = 0; draw(); }
+    else { pos = -11; vel = 6; draw(); setTimeout(function () { go(0); }, 350); }
+    auto = setInterval(tick, 3200);
+    whenVisible(svg, function () { visible = true; last = 0; kick(); }, function () { visible = false; }, 0.05);
+    document.addEventListener('visibilitychange', function () { visible = !document.hidden; if (visible) { last = 0; kick(); } });
+    dark.addEventListener && dark.addEventListener('change', function () { colors(); draw(); });
+    return { relang: function () { showPlan(shown === null ? 0 : shown, true); } };
+  })();
+
+  apply(first);
+
+  // ---------- Карточки «Место / Время / Друг» ----------
+  document.querySelectorAll('.trigger').forEach(function (el) {
+    whenVisible(el, function () { el.classList.add('play'); }, function () { el.classList.remove('play'); }, 0.35);
+  });
+
+  // ---------- Сцена на карте ----------
+  (function () {
+    var motion = document.getElementById('me'), dot = document.getElementById('dot'), push = document.getElementById('push');
+    var steps = document.querySelectorAll('#steps li'), timers = [], running = false;
+    function step(n) { steps.forEach(function (li, i) { li.classList.toggle('now', i === n); }); }
+    function clear() { timers.forEach(clearTimeout); timers = []; }
+    function run() {
+      clear();
+      push.classList.remove('on'); step(0);
+      timers.push(setTimeout(function () { step(1); if (motion.beginElement) motion.beginElement(); }, 900));
+      timers.push(setTimeout(function () { step(2); push.classList.add('on'); }, 900 + 2900));
+      timers.push(setTimeout(function () { push.classList.remove('on'); }, 900 + 2900 + 3200));
+      timers.push(setTimeout(function () { if (running) run(); }, 900 + 2900 + 4000));
+    }
+    if (reduce) {
+      motion.remove(); dot.setAttribute('transform', 'translate(258 300)'); push.classList.add('on'); step(2);
+      return;
+    }
+    dot.removeAttribute('transform');
+    whenVisible(document.querySelector('.map'), function () { if (!running) { running = true; run(); } }, function () { running = false; clear(); }, 0.45);
+  })();
+
+  // ---------- Остальное ----------
+  var more = document.getElementById('more');
+  whenVisible(more, function () { more.classList.add('in'); }, null, 0.2);
+  var priv = document.getElementById('private');
+  whenVisible(priv, function () { priv.classList.add('play'); }, function () { priv.classList.remove('play'); }, 0.2);
+})();
+</script>
 </body>
 </html>
